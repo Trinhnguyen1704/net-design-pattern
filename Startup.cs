@@ -12,7 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Persistence.Context;
+using net_design_pattern.Persistence.Helper;
+using net_design_pattern.Persistence.Repositories.Authorization;
 
 namespace net_design_pattern
 {
@@ -28,11 +31,13 @@ namespace net_design_pattern
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //IoC, Service Collection
+            //IoC, Service Collection: 3 type Scope, Singleton and Transient
             //Register Service
 
 
             services.AddControllers();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "net_design_pattern", Version = "v1" });
