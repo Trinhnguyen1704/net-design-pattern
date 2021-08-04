@@ -19,8 +19,8 @@ namespace net_design_pattern.Persistence.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Account>()
-            .HasMany(x => x.Roles)
-            .WithMany(x => x.Accounts);
+            .HasMany(x => x.AccountHasRoles)
+            .WithOne(x => x.Account);
 
             builder.Entity<Account>()
             .HasMany(x => x.Orders)
@@ -29,6 +29,10 @@ namespace net_design_pattern.Persistence.Context
             builder.Entity<Account>()
             .HasOne(x => x.Profile)
             .WithOne(x => x.Account);
+
+            builder.Entity<Role>()
+            .HasMany(x => x.AccountHasRoles)
+            .WithOne(x => x.Role);
 
             builder.Entity<Product>()
             .HasOne(x => x.Category)
