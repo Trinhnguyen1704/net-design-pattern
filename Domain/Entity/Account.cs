@@ -15,7 +15,7 @@ namespace net_design_pattern.Domain.Models
         public Account()
         {
             Profile = new Profile();
-            Roles = new HashSet<Role>();
+            AccountHasRoles = new HashSet<AccountHasRole>();
             Orders = new HashSet<Order>();
         }
         [Key]
@@ -25,7 +25,7 @@ namespace net_design_pattern.Domain.Models
         [Required][MaxLength(50)]
         public string Password {get; set;}
         public virtual Profile Profile {get; set;}
-        public virtual ICollection<Role> Roles {get; set;}
+        public virtual ICollection<AccountHasRole> AccountHasRoles { get; set; }
         public virtual ICollection<Order> Orders {get; set;}
     }
 }

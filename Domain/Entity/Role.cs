@@ -13,12 +13,12 @@ namespace net_design_pattern.Domain.Models
     {
         public Role()
         {
-            Accounts = new HashSet<Account>();
+            AccountHasRoles = new List<AccountHasRole>();
         }
         [Key]
         public int Id {get; set;}
         [Required]
         public int Name {get; set;}
-        public virtual ICollection<Account> Accounts {get; set;}
+        public virtual List<AccountHasRole> AccountHasRoles { get; set; }
     }
 }
