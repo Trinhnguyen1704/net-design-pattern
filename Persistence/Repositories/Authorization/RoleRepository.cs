@@ -6,7 +6,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Persistence.Context;
-using net_design_pattern.Repositories.Domain.Authorization;
+using net_design_pattern.Domain.Repositories.Authorization;
 
 namespace net_design_pattern.Persistence.Repositories.Authorization
 {
