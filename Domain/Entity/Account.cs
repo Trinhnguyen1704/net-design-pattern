@@ -11,10 +11,12 @@ namespace net_design_pattern.Domain.Models
     [Table("Account")]
     public class Account : BaseEntity
     {
+        //Dependency Ịnjection
         public Account()
         {
             Profile = new Profile();
             Roles = new HashSet<Role>();
+            Orders = new HashSet<Order>();
         }
         [Key]
         public int Id {get; set;}
@@ -22,8 +24,8 @@ namespace net_design_pattern.Domain.Models
         public string Email {get; set;}
         [Required][MaxLength(50)]
         public string Password {get; set;}
-
         public virtual Profile Profile {get; set;}
         public virtual ICollection<Role> Roles {get; set;}
+        public virtual ICollection<Order> Orders {get; set;}
     }
 }
