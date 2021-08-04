@@ -18,7 +18,7 @@ namespace net_design_pattern.Domain.Models
         [Key]
         public int Id {get; set;}
         [Required]
-        public int Name {get; set;}
+        public string Name {get; set;}
         public virtual List<AccountHasRole> AccountHasRoles { get; set; }
     }
 }
