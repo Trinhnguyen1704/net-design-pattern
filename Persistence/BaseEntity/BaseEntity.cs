@@ -19,3 +19,4 @@ namespace net_design_pattern.Persistence.BaseEntity
         
     }
 }
+//This follows the DRY principle, you don't have to repeat these fields in each entity 
