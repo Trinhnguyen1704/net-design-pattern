@@ -11,6 +11,10 @@ namespace net_design_pattern.Domain.Models
     [Table("Product")]
     public class Product : BaseEntity
     {
+        public Product()
+        {
+            Orders = new HashSet<Order>();
+        }
         [Key]
         public int Id {get; set;}
         [Required][MaxLength(320)]
@@ -22,6 +26,7 @@ namespace net_design_pattern.Domain.Models
         public int CategoryId {get; set;}
         [ForeignKey("CategoryId")]
         public virtual Category Category {get; set;}
+        public ICollection<Order> Orders {get; set;}
 
     }
 }
