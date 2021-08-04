@@ -9,7 +9,7 @@ namespace net_design_pattern.Persistence.Helper
     {
         public MappingProfile()
         {
-
+            CreateMap<Role, RoleDto>();
         } 
             
     }
