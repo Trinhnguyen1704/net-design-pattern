@@ -11,6 +11,7 @@ namespace net_design_pattern.Domain.Models
     [Table("Category")]
     public class Category : BaseEntity
     {
+        //Dependency Ịnjection
         public Category()
         {
             Products = new HashSet<Product>();

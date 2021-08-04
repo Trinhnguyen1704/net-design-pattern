@@ -14,7 +14,7 @@ namespace net_design_pattern.Persistence.BaseEntity
         public DateTime? CreatedAt {get; set;}
 
         public DateTime? UpdatedAt {get; set;}
-        public Acount UpdatedBy {get; set;}
+        public Account UpdatedBy {get; set;}
         public bool IsDeleted {get; set;}
         
     }

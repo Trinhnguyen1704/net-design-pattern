@@ -11,6 +11,7 @@ namespace net_design_pattern.Domain.Models
     [Table("Order")]
     public class Order : BaseEntity
     {
+        //Dependency Ịnjection
         public Order()
         {
             Products = new HashSet<Product>();
