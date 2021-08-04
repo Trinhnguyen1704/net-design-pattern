@@ -13,6 +13,8 @@ namespace net_design_pattern.Persistence.Context
         public DbSet<Account> Accounts {get; set;}
         public DbSet<Profile> Profiles {get; set;}
         public DbSet<Role> Roles {get; set;}
+
+         public DbSet<AccountHasRole> AccountHasRoles {get; set;}
         public DbSet<Product> Products {get; set;}
         public DbSet<Category> Categories {get; set;}
         public DbSet<Order> Orders {get; set;}
