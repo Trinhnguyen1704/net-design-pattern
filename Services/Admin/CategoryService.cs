@@ -40,7 +40,12 @@ namespace net_design_pattern.Services.Admin
 
         public bool DeleteCategory(int accountId, int categoryId)
         {
-            throw new NotImplementedException();
+            var checkRole = _roleRepository.CheckRole(accountId);
+            if (!checkRole)
+            {
+                return false;
+            }
+            return _categoryRepository.DeleteCategory(categoryId);
         }
 
         public List<CategoryDto> GetCategories(int accountId)

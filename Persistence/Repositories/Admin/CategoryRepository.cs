@@ -32,7 +32,22 @@ namespace net_design_pattern.Persistence.Repositories.Admin
 
         public bool DeleteCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var categoryToDelete = _context.Categories.FirstOrDefault(x => x.Id == categoryId);
+                if(categoryToDelete == null)
+                {
+                    return false;
+                }
+                categoryToDelete.IsDeleted = true;
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
         }
 
         public List<Category> GetCategories()
