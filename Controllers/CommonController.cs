@@ -32,8 +32,23 @@ namespace net_design_pattern.Controllers
         }
 
         [HttpPost("product")]
-        public void Post([FromBody] string value)
+        public ActionResult<ProductDto> AddProduct([FromBody] ProductDto product)
         {
+            var accountId = 2;// Only admin have permission to add product
+            // var errorMessage = "";
+            // if (accountId == null)
+            // {
+            //     errorMessage = "Người dùng không được phân quyền.";
+            //     return 
+            // }
+            var productRes = _productService.AddProduct(accountId, product);
+
+            if (productRes == null)
+            {
+                // errorMessage = "Người dùng không được phân quyền.";
+                 return null;
+            }
+            return productRes;
         }
 
         [HttpPut("product/{id}")]
