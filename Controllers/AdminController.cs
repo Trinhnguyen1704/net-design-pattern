@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Domain.Repositories.Authorization;
+using net_design_pattern.Domain.Services.Admin;
 
 namespace net_design_pattern.Controllers
 {
@@ -15,37 +16,34 @@ namespace net_design_pattern.Controllers
         // test api get roles
         //Inject dependency from construct
         private readonly IRoleRepository _roleRepository;
-        public AdminController(IRoleRepository roleRepository)
+        private readonly ICategoryService _categoryService;
+        public AdminController(IRoleRepository roleRepository, ICategoryService categoryService)
         {
             _roleRepository = roleRepository;
+            _categoryService = categoryService;
         }
-        [HttpGet("roles")]
-        public ActionResult<IEnumerable<RoleDto>> GetRoles()
+        // [HttpGet("roles")]
+        // public ActionResult<IEnumerable<RoleDto>> GetRoles()
+        // {
+        //     // accountId is get from login, but now is hard data
+        //     var accountId = 2;
+        //     return _roleRepository.GetRoles(accountId);
+        // }
+        [HttpGet("category")]
+        public ActionResult<IEnumerable<CategoryDto>> GetCategories()
         {
             // accountId is get from login, but now is hard data
             var accountId = 2;
-            return _roleRepository.GetRoles(accountId);
+            return _categoryService.GetCategories(accountId);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("category/{categoryId}")]
+        public ActionResult<CategoryDto> GetCategory(int categoryId)
         {
-            return "value";
-        }
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            // accountId is get from login, but now is hard data
+            // 
+            var accountId = 2;
+            return _categoryService.GetCategoryById(accountId, categoryId);
         }
     }
 }
