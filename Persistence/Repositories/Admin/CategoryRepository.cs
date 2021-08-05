@@ -67,7 +67,24 @@ namespace net_design_pattern.Persistence.Repositories.Admin
 
         public Category UpdateCategory(int categoryId, Category category)
         {
-            throw new NotImplementedException();
+             try
+            {
+                var categoryToUpdate = _context.Categories.FirstOrDefault(x => x.Id == categoryId);
+                if(categoryToUpdate == null)
+                {
+                    return null;
+                }
+                categoryToUpdate.Name = category.Name;
+
+                _context.SaveChanges();
+
+                return categoryToUpdate;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
     }
 }
