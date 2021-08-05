@@ -25,7 +25,17 @@ namespace net_design_pattern.Services.Admin
 
         public CategoryDto AddCategory(int accountId, CategoryDto category)
         {
-            throw new NotImplementedException();
+            var checkRole = _roleRepository.CheckRole(accountId);
+            if (!checkRole)
+            {
+                return null;
+            }
+            var categoryRet = _categoryRepository.AddCategory(_mapper.Map<Category>(category));
+            if(categoryRet == null)
+            {
+                return null;
+            }
+            return _mapper.Map<CategoryDto>(categoryRet);
         }
 
         public bool DeleteCategory(int accountId, int categoryId)

@@ -11,7 +11,7 @@ namespace net_design_pattern.Domain.Repositories.Admin
         List<Category> GetCategories();
         Category GetCategoryById(int categoryId);
         Category UpdateCategory(int categoryId, Category category);
-        Product AddCategory(Category category);
+        Category AddCategory(Category category);
         bool DeleteCategory(int categoryId);
     }
 }

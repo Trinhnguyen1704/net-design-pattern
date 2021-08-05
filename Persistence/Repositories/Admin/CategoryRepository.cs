@@ -15,9 +15,19 @@ namespace net_design_pattern.Persistence.Repositories.Admin
         {
             _context = context;
         }
-        public Product AddCategory(Category category)
+        public Category AddCategory(Category category)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+                return category;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public bool DeleteCategory(int categoryId)
