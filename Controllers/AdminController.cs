@@ -34,7 +34,7 @@ namespace net_design_pattern.Controllers
         {
             // accountId is get from login, but now is hard data
             var accountId = 2;
-            return _categoryService.GetCategories(accountId);
+            return (_categoryService.GetCategories(accountId));
         }
 
         [HttpGet("category/{categoryId}")]
