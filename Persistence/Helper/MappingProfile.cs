@@ -10,6 +10,11 @@ namespace net_design_pattern.Persistence.Helper
         public MappingProfile()
         {
             CreateMap<Role, RoleDto>();
+            CreateMap<Product, ProductDto>()
+            .ForMember(dest => dest.Status, act => act.MapFrom(
+                src => (src.IsAvailable == 1 ? "Available": "Unavailable")
+            ));
+            CreateMap<Category, CategoryDto>();
         } 
             
     }
