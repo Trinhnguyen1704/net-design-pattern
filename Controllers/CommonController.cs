@@ -51,9 +51,18 @@ namespace net_design_pattern.Controllers
             return productRes;
         }
 
-        [HttpPut("product/{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("product/{productId}")]
+        public ActionResult<ProductDto> UpdateProduct(int productId, [FromBody] ProductDto product)
         {
+            var accountId = 2;// Only admin have permission to add product
+            var productRes = _productService.UpdateProduct(accountId,productId, product);
+
+            if (productRes == null)
+            {
+                // errorMessage = "You don't have permission!";
+                 return null;
+            }
+            return productRes;
         }
 
         [HttpDelete("product/{productId}")]
