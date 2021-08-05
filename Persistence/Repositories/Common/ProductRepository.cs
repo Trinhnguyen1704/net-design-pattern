@@ -36,7 +36,18 @@ namespace net_design_pattern.Persistence.Repositories.Common
 
         public Product GetProductById(int productId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Products
+                .Include(x => x.Category)
+                .Where(x => x.IsDeleted == false)
+                .FirstOrDefault(x => x.Id == productId);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public List<Product> GetProducts()
@@ -51,7 +62,7 @@ namespace net_design_pattern.Persistence.Repositories.Common
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message); 
             }
             return null;
         }

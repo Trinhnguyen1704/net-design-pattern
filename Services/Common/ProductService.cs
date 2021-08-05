@@ -33,7 +33,12 @@ namespace  net_design_pattern.Services.Common
 
         public ProductDto GetProductById(int accountId, int productId)
         {
-            throw new NotImplementedException();
+            var product = _productRepository.GetProductById(productId);
+            if (product == null)
+            {
+                return null;
+            }
+            return _mapper.Map<ProductDto>(product);
         }
 
         public List<ProductDto> GetProducts(int accountId)
