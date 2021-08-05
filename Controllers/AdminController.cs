@@ -45,5 +45,18 @@ namespace net_design_pattern.Controllers
             var accountId = 2;
             return _categoryService.GetCategoryById(accountId, categoryId);
         }
+
+        [HttpPost("category")]
+        public ActionResult<CategoryDto> AddCategory([FromBody] CategoryDto category)
+        {
+            var accountId = 2;// Only admin have permission to add product
+            var categoryRes = _categoryService.AddCategory(accountId, category);
+
+            if (categoryRes == null)
+            {
+                return null;
+            }
+            return categoryRes;
+        }
     }
 }
