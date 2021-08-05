@@ -9,8 +9,8 @@ namespace net_design_pattern.Domain.Services.Admin
 {
     public interface ICategoryService
     {
-        List<Category> GetCategories(int accountId);
-        Category GetCategoryById(int accountId, int categoryId);
+        List<CategoryDto> GetCategories(int accountId);
+        CategoryDto GetCategoryById(int accountId, int categoryId);
         CategoryDto UpdateCategory(int accountId, int categoryId, CategoryDto category);
         CategoryDto AddCategory(int accountId, CategoryDto category);
         bool DeleteCategory(int accountId, int categoryId);
