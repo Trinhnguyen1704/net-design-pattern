@@ -14,7 +14,7 @@ namespace net_design_pattern.Domain.Models.DTOs
         public string Description {get; set;}
         public string Status {get; set;}
         public int CategoryId {get; set;}
-        public Category category {get; set;}
+        public CategoryDto Category {get; set;}
 
     }
 }
