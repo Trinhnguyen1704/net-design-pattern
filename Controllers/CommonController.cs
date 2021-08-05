@@ -24,13 +24,14 @@ namespace net_design_pattern.Controllers
             return _productService.GetProducts(accountId);
         }
 
-        [HttpGet("product/{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("product/{productId}")]
+        public ActionResult<ProductDto> GetProductById(int productId)
         {
-            return "value";
+            var accountId = 2;
+            return _productService.GetProductById(accountId, productId);
         }
 
-        [HttpPost]
+        [HttpPost("product")]
         public void Post([FromBody] string value)
         {
         }
