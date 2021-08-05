@@ -69,7 +69,18 @@ namespace  net_design_pattern.Services.Common
 
         public ProductDto UpdateProduct(int accountId, int productId, ProductDto product)
         {
-            throw new NotImplementedException();
+           var checkRole = _roleRepository.CheckRole(accountId);
+            if (!checkRole)
+            {
+                return null;
+            }
+            var productToUpdate = _mapper.Map<Product>(product);
+            var productRes = _productRepository.UpdateProduct(productId, productToUpdate);
+            if (productRes == null)
+            {
+                return null;
+            }
+            return _mapper.Map<ProductDto>(productRes);
         }
     }
 }

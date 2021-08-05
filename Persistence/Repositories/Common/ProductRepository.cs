@@ -85,7 +85,36 @@ namespace net_design_pattern.Persistence.Repositories.Common
 
         public Product UpdateProduct(int productId, Product product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productToUpdate = _context.Products
+                .Where(x => x.IsDeleted == false)
+                .FirstOrDefault(x => x.Id == productId);
+
+                if(productToUpdate == null)
+                {
+                    return null;
+                }
+
+                productToUpdate.Name = product.Name;
+                productToUpdate.Price = product.Price;
+                productToUpdate.NumInStock = product.NumInStock;
+                productToUpdate.Description = product.Description;
+                productToUpdate.IsAvailable = product.IsAvailable;
+
+                var category = _context.Categories.FirstOrDefault(x => x.Id == product.CategoryId && x.IsDeleted == false);
+                productToUpdate.Category = category;
+
+                _context.SaveChanges();
+
+                return productToUpdate;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            return null;
         }
     }
 }
