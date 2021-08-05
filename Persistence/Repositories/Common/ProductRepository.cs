@@ -33,7 +33,21 @@ namespace net_design_pattern.Persistence.Repositories.Common
 
         public bool DeleteProduct(int productId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productToDelete = _context.Products.FirstOrDefault(x => x.Id == productId);
+                if(productToDelete != null)
+                {
+                    productToDelete.IsDeleted = true;
+                    _context.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
         }
 
         public Product GetProductById(int productId)

@@ -24,6 +24,7 @@ namespace  net_design_pattern.Services.Common
         }
         public ProductDto AddProduct(int accountId, ProductDto product)
         {
+            //only admin has permission to add product
             var checkRole = _roleRepository.CheckRole(accountId);
             if (!checkRole)
             {
@@ -36,7 +37,13 @@ namespace  net_design_pattern.Services.Common
 
         public bool DeleteProduct(int accountId, int productId)
         {
-            throw new NotImplementedException();
+            //only admin has permission to delete product
+            var checkRole = _roleRepository.CheckRole(accountId);
+            if (!checkRole)
+            {
+                return false;
+            }
+            return _productRepository.DeleteProduct(productId);
         }
 
         public ProductDto GetProductById(int accountId, int productId)
