@@ -22,7 +22,7 @@ namespace net_design_pattern.Domain.Models
         public float Price {get; set;}
         public int NumInStock {get; set;}
         public string Description {get; set;}
-        public bool IsAvailable {get; set;}
+        public int IsAvailable {get; set;}
         public int CategoryId {get; set;}
         [ForeignKey("CategoryId")]
         public virtual Category Category {get; set;}
