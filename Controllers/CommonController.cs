@@ -8,7 +8,7 @@ using net_design_pattern.Domain.Services.Common;
 
 namespace net_design_pattern.Controllers
 {
-    [Route("")]
+    [Route("ai")]
     [ApiController]
     public class CommonController : ControllerBase
     {
@@ -17,21 +17,21 @@ namespace net_design_pattern.Controllers
         {
             _productService = productService;
         }
-        [HttpGet("product")]
+        [HttpGet("/product")]
         public ActionResult<IEnumerable<ProductDto>> GetProducts()
         {
             var accountId = 2;
             return _productService.GetProducts(accountId);
         }
 
-        [HttpGet("product/{productId}")]
+        [HttpGet("/product/{productId}")]
         public ActionResult<ProductDto> GetProductById(int productId)
         {
             var accountId = 2;
             return _productService.GetProductById(accountId, productId);
         }
 
-        [HttpPost("product")]
+        [HttpPost("/product")]
         public ActionResult<ProductDto> AddProduct([FromBody] ProductDto product)
         {
             var accountId = 2;// Only admin have permission to add product
@@ -51,7 +51,7 @@ namespace net_design_pattern.Controllers
             return productRes;
         }
 
-        [HttpPut("product/{productId}")]
+        [HttpPut("/product/{productId}")]
         public ActionResult<ProductDto> UpdateProduct(int productId, [FromBody] ProductDto product)
         {
             var accountId = 2;// Only admin have permission to add product
@@ -65,7 +65,7 @@ namespace net_design_pattern.Controllers
             return productRes;
         }
 
-        [HttpDelete("product/{productId}")]
+        [HttpDelete("/product/{productId}")]
         public bool DeleteProduct(int productId)
         {
             var accountId = 2;// Only admin have permission to add product
