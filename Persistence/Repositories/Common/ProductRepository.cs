@@ -18,15 +18,17 @@ namespace net_design_pattern.Persistence.Repositories.Common
         }
         public Product AddProduct(Product product)
         {
-            // try
-            // {
-
-            // }
-            // catch (Exception ex)
-            // {
-            //     Console.WriteLine(ex.Message);
-            // }
-            throw new NotImplementedException();
+            try
+            {
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                return product;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
         public bool DeleteProduct(int productId)

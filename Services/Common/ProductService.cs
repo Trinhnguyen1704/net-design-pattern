@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using net_design_pattern.Domain.Models;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Domain.Repositories.Common;
@@ -21,9 +22,16 @@ namespace  net_design_pattern.Services.Common
             _roleRepository = roleRepository;
             _mapper = mapper;
         }
-        public ProductDto AddProduct(int accountId, ProductDto Product)
+        public ProductDto AddProduct(int accountId, ProductDto product)
         {
-            throw new NotImplementedException();
+            var checkRole = _roleRepository.CheckRole(accountId);
+            if (!checkRole)
+            {
+                return null;
+            }
+            var productToAdd = _mapper.Map<Product>(product);
+            var productRes = _productRepository.AddProduct(productToAdd);
+            return _mapper.Map<ProductDto>(productRes);
         }
 
         public bool DeleteProduct(int accountId, int productId)
