@@ -71,5 +71,15 @@ namespace net_design_pattern.Controllers
             }
             return categoryRes;
         }
+
+        [HttpDelete("category/{categoryId}")]
+        public bool DeleteCategory(int categoryId)
+        {
+            var accountId = 2;// Only admin have permission to add product
+
+            var categoryRes = _categoryService.DeleteCategory(accountId, categoryId);
+
+            return categoryRes;
+        }
     }
 }
