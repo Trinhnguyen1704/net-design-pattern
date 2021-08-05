@@ -38,14 +38,14 @@ namespace net_design_pattern.Controllers
             // var errorMessage = "";
             // if (accountId == null)
             // {
-            //     errorMessage = "Người dùng không được phân quyền.";
+            //     errorMessage = "You don't have permission!";
             //     return 
             // }
             var productRes = _productService.AddProduct(accountId, product);
 
             if (productRes == null)
             {
-                // errorMessage = "Người dùng không được phân quyền.";
+                // errorMessage = "You don't have permission!";
                  return null;
             }
             return productRes;
@@ -56,9 +56,19 @@ namespace net_design_pattern.Controllers
         {
         }
 
-        [HttpDelete("product/{id}")]
-        public void Delete(int id)
+        [HttpDelete("product/{productId}")]
+        public bool DeleteProduct(int productId)
         {
+            var accountId = 2;// Only admin have permission to add product
+            // var errorMessage = "";
+            // if (accountId == null)
+            // {
+            //     errorMessage = "You don't have permission!";
+            //     return false
+            // }
+            var productRes = _productService.DeleteProduct(accountId, productId);
+
+            return productRes;
         }
     }
 }
