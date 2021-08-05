@@ -20,6 +20,7 @@ namespace net_design_pattern.Persistence.Helper
                 src => (src.IsAvailable == 1? "Available" : "Unavailable")
             ));
             CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
         } 
             
     }
