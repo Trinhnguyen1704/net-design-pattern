@@ -19,7 +19,7 @@ namespace net_design_pattern.Controllers
         {
             _roleRepository = roleRepository;
         }
-        [HttpGet("api/roles")]
+        [HttpGet("roles")]
         public ActionResult<IEnumerable<RoleDto>> GetRoles()
         {
             // accountId is get from login, but now is hard data
