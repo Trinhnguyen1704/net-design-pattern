@@ -3,19 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using net_design_pattern.Domain.Models.DTOs;
+using net_design_pattern.Domain.Services.Common;
 
 namespace net_design_pattern.Controllers
 {
+    [Route("")]
     [ApiController]
     public class CommonController : ControllerBase
     {
-        [HttpGet("product")]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IProductService _productService;
+        public CommonController(IProductService productService)
         {
-            return new string[] { "value1", "value2" };
+            _productService = productService;
+        }
+        [HttpGet("product")]
+        public ActionResult<IEnumerable<ProductDto>> GetProducts()
+        {
+            var accountId = 2;
+            return _productService.GetProducts(accountId);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("product/{id}")]
         public ActionResult<string> Get(int id)
         {
             return "value";
@@ -26,12 +35,12 @@ namespace net_design_pattern.Controllers
         {
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("product/{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("product/{id}")]
         public void Delete(int id)
         {
         }
