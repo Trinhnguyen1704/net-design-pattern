@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using net_design_pattern.Domain.Models;
 using net_design_pattern.Domain.Repositories.User;
 using net_design_pattern.Persistence.Context;
@@ -47,6 +48,21 @@ namespace net_design_pattern.Persistence.Repositories.User
             try
             {
                 return _context.Profiles.Where(x => x.IsDeleted == false).FirstOrDefault(x => x.AccountId == accountId);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        public Profile GetProfileByEmail(string email)
+        {
+            try
+            {
+                return _context.Profiles.Where(x => x.IsDeleted == false)
+                .Include(x => x.Account)
+                .FirstOrDefault(x => x.Account.Email == email);
             }
             catch(Exception ex)
             {

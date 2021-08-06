@@ -10,5 +10,6 @@ namespace net_design_pattern.Domain.Services.User
     {
         ProfileDto GetProfile(int accountId);
         ProfileDto EditProfile(int accountId, ProfileDto profile);
+        ProfileDto GetProfileByEmail(int accountId, string email);
     }
 }

@@ -10,5 +10,6 @@ namespace net_design_pattern.Domain.Repositories.User
     {
         Profile GetProfile(int accountId);
         Profile EditProfile(int accountId, Profile profile);
+        Profile GetProfileByEmail(string email);
     }
 }
