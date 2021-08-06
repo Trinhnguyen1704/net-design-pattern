@@ -18,9 +18,15 @@ namespace net_design_pattern.Services.User
             _profileRepository = profileRepository;
             _mapper = mapper;
         }
-        public ProductDto EditProfile(int accountId, ProfileDto profile)
+        public ProfileDto EditProfile(int accountId, ProfileDto profile)
         {
-            throw new NotImplementedException();
+            var profileToUpdate = _mapper.Map<Domain.Models.Profile>(profile);
+            var profileRes = _profileRepository.EditProfile(accountId, profileToUpdate);
+            if(profileRes == null)
+            {
+                return null;
+            }
+            return _mapper.Map<ProfileDto>(profileRes);
         }
 
         public ProfileDto GetProfile(int accountId)
