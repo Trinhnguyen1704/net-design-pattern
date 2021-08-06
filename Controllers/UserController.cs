@@ -55,5 +55,23 @@ namespace net_design_pattern.Controllers
             response.Message = "Update profile successfully.";
             return Ok(response);
         }
+
+        [HttpGet("profile/{email}")]
+        public ActionResult  GetUserProfileByEmail(string email)
+        {
+            var response = new Response<ProfileDto>();
+            int accountId = 2; //Get from login
+            var profileRes = _profileService.GetProfileByEmail(accountId, email);
+            if(profileRes == null)
+            {
+                response.Code = 404; 
+                response.IsSuccess = false;
+                response.Message = "Profile is not exist.";
+                return NotFound(response);
+            }
+            response.Data = profileRes;
+            response.Message = "Get profile successfully.";
+            return Ok(response);
+        }
     }
 }
