@@ -15,15 +15,19 @@ using Microsoft.OpenApi.Models;
 using net_design_pattern.Domain.Repositories.Admin;
 using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Domain.Repositories.Common;
+using net_design_pattern.Domain.Repositories.User;
 using net_design_pattern.Domain.Services.Admin;
 using net_design_pattern.Domain.Services.Common;
+using net_design_pattern.Domain.Services.User;
 using net_design_pattern.Persistence.Context;
 using net_design_pattern.Persistence.Helper;
 using net_design_pattern.Persistence.Repositories.Admin;
 using net_design_pattern.Persistence.Repositories.Authorization;
 using net_design_pattern.Persistence.Repositories.Common;
+using net_design_pattern.Persistence.Repositories.User;
 using net_design_pattern.Services.Admin;
 using net_design_pattern.Services.Common;
+using net_design_pattern.Services.User;
 
 namespace net_design_pattern
 {
@@ -57,6 +61,8 @@ namespace net_design_pattern
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProfileRepository, ProfileRepository>();
+            services.AddTransient<IProfileService, ProfileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
