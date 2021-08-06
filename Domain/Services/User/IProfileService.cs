@@ -9,6 +9,6 @@ namespace net_design_pattern.Domain.Services.User
     public interface IProfileService
     {
         ProfileDto GetProfile(int accountId);
-        ProductDto EditProfile(int accountId, ProfileDto profile);
+        ProfileDto EditProfile(int accountId, ProfileDto profile);
     }
 }
