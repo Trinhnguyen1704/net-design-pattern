@@ -14,8 +14,7 @@ namespace net_design_pattern.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        // test api get roles
-        //Inject dependency from construct
+        //Dependence injection from constructor
         private readonly IRoleRepository _roleRepository;
         private readonly ICategoryService _categoryService;
         public AdminController(IRoleRepository roleRepository, ICategoryService categoryService)

@@ -15,3 +15,4 @@ namespace net_design_pattern.Domain.Repositories.Admin
         bool DeleteCategory(int categoryId);
     }
 }
+// One interface just should have one duty, like this interface has only function relate to category.

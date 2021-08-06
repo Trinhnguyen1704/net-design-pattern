@@ -18,3 +18,4 @@ namespace net_design_pattern.Domain.Models.DTOs
 
     }
 }
+//Data Transfer Object Design Pattern: is a data container for moving data between layers.

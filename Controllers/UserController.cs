@@ -13,12 +13,14 @@ namespace net_design_pattern.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        //Dependence injection from constructor
         public IProfileService _profileService;
         public UserController(IProfileService profileService)
         {
             _profileService = profileService;
         }
 
+        //Get profile with user logined
         [HttpGet("profile")]
         public ActionResult  GetUserProfile()
         {
@@ -37,6 +39,7 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        //Edit profile
         [HttpPut("profile")]
         public ActionResult UpdateProfile([FromBody] ProfileDto profile)
         {
@@ -56,11 +59,12 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        //Get profile by email, for admin want to search
         [HttpGet("profile/{email}")]
         public ActionResult  GetUserProfileByEmail(string email)
         {
             var response = new Response<ProfileDto>();
-            int accountId = 2; //Get from login
+            int accountId = 2; //Get from login (admmin account)
             var profileRes = _profileService.GetProfileByEmail(accountId, email);
             if(profileRes == null)
             {

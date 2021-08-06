@@ -13,6 +13,7 @@ namespace net_design_pattern.Controllers
     [ApiController]
     public class CommonController : ControllerBase
     {
+        //Dependence injection from constructor
         private readonly IProductService _productService;
         public CommonController(IProductService productService)
         {

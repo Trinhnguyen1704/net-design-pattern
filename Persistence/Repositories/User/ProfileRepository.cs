@@ -11,6 +11,7 @@ namespace net_design_pattern.Persistence.Repositories.User
 {
     public class ProfileRepository : IProfileRepository
     {
+        // Dependency Injection by construtor
         public readonly AppDbContext _context;
         public ProfileRepository(AppDbContext context)
         {

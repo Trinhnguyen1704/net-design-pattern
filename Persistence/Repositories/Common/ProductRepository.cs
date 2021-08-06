@@ -11,6 +11,7 @@ namespace net_design_pattern.Persistence.Repositories.Common
 {
     public class ProductRepository : IProductRepository
     {
+        // Dependency Injection by construtor
         private readonly AppDbContext _context;
         public ProductRepository(AppDbContext context)
         {

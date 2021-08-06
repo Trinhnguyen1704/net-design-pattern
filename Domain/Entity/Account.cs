@@ -11,7 +11,6 @@ namespace net_design_pattern.Domain.Models
     [Table("Account")]
     public class Account : BaseEntity
     {
-        //Dependency Ịnjection
         public Account()
         {
             Profile = new Profile();

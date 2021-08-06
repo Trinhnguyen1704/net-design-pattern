@@ -10,6 +10,7 @@ namespace net_design_pattern.Persistence.Repositories.Admin
 {
     public class CategoryRepository : ICategoryRepository
     {
+        //Dependency Injection
         private readonly AppDbContext _context;
         public CategoryRepository(AppDbContext context)
         {

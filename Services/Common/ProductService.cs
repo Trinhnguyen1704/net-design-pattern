@@ -13,6 +13,7 @@ namespace  net_design_pattern.Services.Common
 {
     public class ProductService : IProductService
     {
+        // Dependency Injection by construtor
         private readonly IProductRepository _productRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IMapper _mapper;

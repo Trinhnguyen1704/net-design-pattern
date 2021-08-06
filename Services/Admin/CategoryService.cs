@@ -13,6 +13,7 @@ namespace net_design_pattern.Services.Admin
 {
     public class CategoryService : ICategoryService
     {
+        // Dependency Injection by construtor
         private readonly ICategoryRepository _categoryRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IMapper _mapper;

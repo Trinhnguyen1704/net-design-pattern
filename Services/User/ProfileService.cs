@@ -12,6 +12,7 @@ namespace net_design_pattern.Services.User
 {
     public class ProfileService : IProfileService
     {
+        // Dependency Injection by construtor
         public IProfileRepository _profileRepository;
         public IMapper _mapper;
         private readonly IRoleRepository _roleRepository;
