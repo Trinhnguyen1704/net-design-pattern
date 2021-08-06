@@ -84,6 +84,23 @@ namespace net_design_pattern.Persistence.Repositories.Common
             return null;
         }
 
+        public List<Product> GetProductsByCategoryId(int categoryId)
+        {
+            try
+            {
+                return _context.Products
+                .Where(x => x.IsDeleted == false && x.CategoryId == categoryId)
+                .Include(x => x.Category)
+                .OrderBy(x => x.Id)
+                .ToList();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message); 
+            }
+            return null;
+        }
+
         public Product UpdateProduct(int productId, Product product)
         {
             try

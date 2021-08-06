@@ -68,6 +68,17 @@ namespace  net_design_pattern.Services.Common
             return listProductRet;
         }
 
+        public List<ProductDto> GetProductsByCategoryId(int accountId, int categoryId)
+        {
+            var products = _productRepository.GetProductsByCategoryId(categoryId);
+            var listProductRet = _mapper.Map<List<ProductDto>>(products);
+            for (int i = 0; i < listProductRet.Count; i++)
+            {
+                listProductRet[i].Category = _mapper.Map<CategoryDto>(products[i].Category);
+            }
+            return listProductRet;
+        }
+
         public ProductDto UpdateProduct(int accountId, int productId, ProductDto product)
         {
            var checkRole = _roleRepository.CheckRole(accountId);

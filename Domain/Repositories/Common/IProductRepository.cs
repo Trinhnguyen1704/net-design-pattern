@@ -13,5 +13,6 @@ namespace net_design_pattern.Domain.Repositories.Common
         Product UpdateProduct(int productId, Product product);
         Product AddProduct(Product product);
         bool DeleteProduct(int productId);
+        List<Product> GetProductsByCategoryId(int categoryId);
     }
 }
