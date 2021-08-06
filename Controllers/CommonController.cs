@@ -102,6 +102,24 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        [HttpGet("/product/category/{categoryId}")]
+        public ActionResult GetProductsByCategoryId(int categoryId)
+        {
+            var accountId = 2;
+            var response = new Response<List<ProductDto>>();
+            var product = _productService.GetProductsByCategoryId(accountId, categoryId);
+            if(product == null)
+            {
+                response.Code = 404; 
+                response.IsSuccess = false;
+                response.Message = "Product is not exist.";
+                return NotFound(response);
+            }
+            response.Data = product;
+            response.Message = "Get product by category successfully!";
+            return Ok(response);
+        }
+
         [HttpDelete("/product/{productId}")]
         public ActionResult DeleteProduct(int productId)
         {
