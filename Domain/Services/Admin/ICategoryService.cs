@@ -16,3 +16,4 @@ namespace net_design_pattern.Domain.Services.Admin
         bool DeleteCategory(int accountId, int categoryId);
     }
 }
+//We should separate each interface to avoid inheriting unnecessary functions 
