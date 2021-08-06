@@ -19,7 +19,7 @@ namespace net_design_pattern.Controllers
             _profileService = profileService;
         }
 
-        [HttpGet("user/profile")]
+        [HttpGet("profile")]
         public ActionResult  GetUserProfile()
         {
             var response = new Response<ProfileDto>();
@@ -37,25 +37,23 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
-        // [HttpGet("{id}")]
-        // public ActionResult<string> Get(int id)
-        // {
-        //     return "value";
-        // }
+        [HttpPut("profile")]
+        public ActionResult UpdateProfile([FromBody] ProfileDto profile)
+        {
+            var response = new Response<ProfileDto>();
+            int accountId = 3;
+            var profileRes = _profileService.EditProfile(accountId, profile);
+            if(profileRes == null)
+            {
+                response.Code = 404; 
+                response.IsSuccess = false;
+                response.Message = "Profile is not exist.";
+                return NotFound(response);
+            }
 
-        // [HttpPost]
-        // public void Post([FromBody] string value)
-        // {
-        // }
-
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] string value)
-        // {
-        // }
-
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+            response.Data = profileRes;
+            response.Message = "Update profile successfully.";
+            return Ok(response);
+        }
     }
 }
