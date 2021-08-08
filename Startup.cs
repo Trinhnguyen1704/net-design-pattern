@@ -1,22 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using net_design_pattern.Domain.Repositories.Admin;
 using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Domain.Repositories.Common;
 using net_design_pattern.Domain.Repositories.User;
 using net_design_pattern.Domain.Services.Admin;
+using net_design_pattern.Domain.Services.Authorization;
 using net_design_pattern.Domain.Services.Common;
 using net_design_pattern.Domain.Services.User;
 using net_design_pattern.Persistence.Context;
@@ -26,6 +24,7 @@ using net_design_pattern.Persistence.Repositories.Authorization;
 using net_design_pattern.Persistence.Repositories.Common;
 using net_design_pattern.Persistence.Repositories.User;
 using net_design_pattern.Services.Admin;
+using net_design_pattern.Services.Authorization;
 using net_design_pattern.Services.Common;
 using net_design_pattern.Services.User;
 
@@ -63,6 +62,30 @@ namespace net_design_pattern
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProfileRepository, ProfileRepository>();
             services.AddTransient<IProfileService, ProfileService>();
+
+            var key = Configuration.GetSection("JwtKey").Value;
+            services.AddAuthentication(x =>
+            {
+                //setting the default authentication and challenge scheme 
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x => {
+                //The AddJwtBearer will handle all requests and will check for a valid JWT Token in the header.
+                // If it is not passed, or the token is expired, it will generate a 401 Unauthorized HTTP response.
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //setting the IssuerSigningKey
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+            
+            //Add singleton, 
+            services.AddSingleton<IJWTAuthenticationManager, JwtAuthenticationManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +101,9 @@ namespace net_design_pattern
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //Wiring up Startup for authentication middleware
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
