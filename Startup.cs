@@ -70,8 +70,7 @@ namespace net_design_pattern
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x => {
-                //The AddJwtBearer will handle all requests and will check for a valid JWT Token in the header.
-                // If it is not passed, or the token is expired, it will generate a 401 Unauthorized HTTP response.
+                //The AddJwtBearer will handle all requests and will check for a valid JWT Token in the header. If it is not passed, or the token is expired, it will generate a 401 Unauthorized HTTP response.
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
@@ -85,7 +84,10 @@ namespace net_design_pattern
             });
             
             //Add singleton, 
-            services.AddSingleton<IJWTAuthenticationManager, JwtAuthenticationManager>();
+            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
+
+            services.AddTransient<ILoginRepository, LoginRepository>();
+            services.AddTransient<ILoginService, LoginService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
