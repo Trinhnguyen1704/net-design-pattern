@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj": {}
+    "e:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj": {}
   },
   "projects": {
-    "E:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj": {
+    "e:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj",
+        "projectUniqueName": "e:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj",
         "projectName": "net-design-pattern",
-        "projectPath": "E:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj",
+        "projectPath": "e:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\net-design-pattern.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\obj\\",
+        "outputPath": "e:\\TrainingEnclave\\Tech\\DesignPattern\\net-design-pattern\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -45,6 +45,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
@@ -81,6 +85,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.12.0, )"
             }
           },
           "imports": [
