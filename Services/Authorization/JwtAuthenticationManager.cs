@@ -10,7 +10,7 @@ using net_design_pattern.Domain.Services.Authorization;
 
 namespace net_design_pattern.Services.Authorization
 {
-    public class JwtAuthenticationManager : IJWTAuthenticationManager
+    public class JwtAuthenticationManager : IJwtAuthenticationManager
     {
         private readonly string _key;
         public JwtAuthenticationManager(string key)

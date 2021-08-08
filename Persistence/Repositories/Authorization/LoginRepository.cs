@@ -13,10 +13,10 @@ namespace net_design_pattern.Persistence.Repositories.Authorization
     public class LoginRepository : ILoginRepository
     {
         private readonly AppDbContext _context;
-        private readonly IJWTAuthenticationManager _jwtAuthenticationManager;
+        private readonly IJwtAuthenticationManager _jwtAuthenticationManager;
         private readonly IRoleRepository _roleRepository;
         public LoginRepository(AppDbContext context,
-                                IJWTAuthenticationManager jWTAuthenticationManager,
+                                IJwtAuthenticationManager jWTAuthenticationManager,
                                 IRoleRepository roleRepository)
         {
             _jwtAuthenticationManager = jWTAuthenticationManager;
