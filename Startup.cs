@@ -64,13 +64,15 @@ namespace net_design_pattern
             services.AddTransient<IProfileService, ProfileService>();
 
             var key = Configuration.GetSection("JwtKey").Value;
+            //configure a JWT based authentication service
             services.AddAuthentication(x =>
             {
                 //setting the default authentication and challenge scheme 
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x => {
-                //The AddJwtBearer will handle all requests and will check for a valid JWT Token in the header. If it is not passed, or the token is expired, it will generate a 401 Unauthorized HTTP response.
+                //The AddJwtBearer will handle all requests and will check for a valid JWT Token in the header.
+                // If it is not passed, or the token is expired, it will generate a 401 Unauthorized HTTP response.
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
@@ -104,7 +106,7 @@ namespace net_design_pattern
 
             app.UseRouting();
 
-            //Wiring up Startup for authentication middleware
+            //make the authentication service is available to the application.
             app.UseAuthentication();
 
             app.UseAuthorization();

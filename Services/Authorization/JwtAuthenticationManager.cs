@@ -19,16 +19,17 @@ namespace net_design_pattern.Services.Authorization
         }
         public string Authenticate(int accountId, string email)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler();// nitializes a new instance of the JwtSecurityTokenHandler
             var tokenKey = Encoding.ASCII.GetBytes(_key);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 //Indentity
                 Subject = new ClaimsIdentity(new Claim[] {
+                    // claims is to check for authorization
                     new Claim(ClaimTypes.NameIdentifier, accountId.ToString()),
                     new Claim(ClaimTypes.Name, email),
                 }),
-                Expires = DateTime.UtcNow.AddHours(24),
+                Expires = DateTime.UtcNow.AddHours(24), // token exprire
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(tokenKey),
                     SecurityAlgorithms.HmacSha256Signature
@@ -39,3 +40,12 @@ namespace net_design_pattern.Services.Authorization
         }
     }
 }
+//Step 
+//Create Security Handler – “token handler”.
+//Once Token Handler is created, we will encrypt the key into bytes.
+//Now we will create a token descriptor.
+//Subject – New Claim identity
+//Expired – When it will be expired.
+//SigningCredentical – Private key + Algorithm
+//Now we will create a token using the “create token” method of the token handler.
+//Return token from Authentication method.

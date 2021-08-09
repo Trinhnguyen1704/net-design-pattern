@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using net_design_pattern.Domain.Models.Authorization;
 using net_design_pattern.Domain.Services.Authorization;
@@ -18,6 +19,8 @@ namespace Namespace
         {
             _loginService = loginService;
         }
+        //attribute to bypass the authentication.
+        [AllowAnonymous]
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginModel loginModel)
         {
