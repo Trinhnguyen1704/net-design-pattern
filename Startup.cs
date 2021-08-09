@@ -114,6 +114,7 @@ namespace net_design_pattern
 
             services.AddTransient<ILoginRepository, LoginRepository>();
             services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IPasswordService, PasswordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
