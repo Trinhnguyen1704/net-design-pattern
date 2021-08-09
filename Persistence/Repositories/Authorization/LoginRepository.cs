@@ -15,13 +15,16 @@ namespace net_design_pattern.Persistence.Repositories.Authorization
         private readonly AppDbContext _context;
         private readonly IJwtAuthenticationManager _jwtAuthenticationManager;
         private readonly IRoleRepository _roleRepository;
+        private readonly IPasswordService _passwordService;
         public LoginRepository(AppDbContext context,
                                 IJwtAuthenticationManager jWTAuthenticationManager,
-                                IRoleRepository roleRepository)
+                                IRoleRepository roleRepository,
+                                IPasswordService passwordService)
         {
             _jwtAuthenticationManager = jWTAuthenticationManager;
             _context = context;
             _roleRepository = roleRepository;
+            _passwordService = passwordService;
         }
         public LoginResponse Login(string email, string password)
         {
@@ -39,7 +42,8 @@ namespace net_design_pattern.Persistence.Repositories.Authorization
                     return null;
                 }
                 //Decode password in db and compare when use password encode
-                if(password.Equals(account.Password))
+                var passwordDecode = _passwordService.PasswordDecoder(account.Password);
+                if(password.Equals(passwordDecode))
                 {
                     var roles = _roleRepository.GetRoles(account.Id); 
                     var returnedAccount = new LoginResponse
