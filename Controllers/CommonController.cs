@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Domain.Services.Common;
@@ -9,7 +11,8 @@ using net_design_pattern.Domain.Services.Communication;
 
 namespace net_design_pattern.Controllers
 {
-    [Route("ai")]
+    [Authorize]
+    [Route("api")]
     [ApiController]
     public class CommonController : ControllerBase
     {
@@ -24,15 +27,15 @@ namespace net_design_pattern.Controllers
         {
             //Use a common response so it is easy for fe to get and use data.
             var response = new Response<List<ProductDto>>();
-            var accountId = 2;
-            // if(accountId == null)
-            // {
-            //     response.Code = 401; // authenticate error code
-            //     response.IsSuccess = false;
-            //     response.Message = "User don't have permission.";
-            //     return Unauthorized(response);
-            // }
-            var products =  _productService.GetProducts(accountId);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var products =  _productService.GetProducts(Int32.Parse(accountId));
             if(products == null)
             {
                 response.Code = 404; // Bad request error code
@@ -48,9 +51,16 @@ namespace net_design_pattern.Controllers
         [HttpGet("/product/{productId}")]
         public ActionResult GetProductById(int productId)
         {
-            var accountId = 2;
             var response = new Response<ProductDto>();
-            var product = _productService.GetProductById(accountId, productId);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var product = _productService.GetProductById(Int32.Parse(accountId), productId);
             if(product == null)
             {
                 response.Code = 404; 
@@ -66,10 +76,16 @@ namespace net_design_pattern.Controllers
         [HttpPost("/product")]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
-            var accountId = 2;// Only admin have permission to add product
             var response = new Response<ProductDto>();
-
-            var productRes = _productService.AddProduct(accountId, product);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var productRes = _productService.AddProduct(Int32.Parse(accountId), product);
 
             if (productRes == null)
             {
@@ -86,9 +102,16 @@ namespace net_design_pattern.Controllers
         [HttpPut("/product/{productId}")]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
         {
-            var accountId = 2;// Only admin have permission to add product
             var response = new Response<ProductDto>();
-            var productRes = _productService.UpdateProduct(accountId,productId, product);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var productRes = _productService.UpdateProduct(Int32.Parse(accountId),productId, product);
 
             if (productRes == null)
             {
@@ -105,9 +128,16 @@ namespace net_design_pattern.Controllers
         [HttpGet("/product/category/{categoryId}")]
         public ActionResult GetProductsByCategoryId(int categoryId)
         {
-            var accountId = 2;
             var response = new Response<List<ProductDto>>();
-            var product = _productService.GetProductsByCategoryId(accountId, categoryId);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var product = _productService.GetProductsByCategoryId(Int32.Parse(accountId), categoryId);
             if(product == null)
             {
                 response.Code = 404; 
@@ -123,9 +153,16 @@ namespace net_design_pattern.Controllers
         [HttpDelete("/product/{productId}")]
         public ActionResult DeleteProduct(int productId)
         {
-            var accountId = 2;// Only admin have permission to add product
             var response = new Response<string>("");
-            var productRes = _productService.DeleteProduct(accountId, productId);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var productRes = _productService.DeleteProduct(Int32.Parse(accountId), productId);
 
             if(productRes == false)
             {

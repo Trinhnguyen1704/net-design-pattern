@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Domain.Services.Communication;
@@ -9,6 +11,7 @@ using net_design_pattern.Domain.Services.User;
 
 namespace net_design_pattern.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -25,8 +28,15 @@ namespace net_design_pattern.Controllers
         public ActionResult  GetUserProfile()
         {
             var response = new Response<ProfileDto>();
-            int accountId = 3; //Get from login
-            var profileRes = _profileService.GetProfile(accountId);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var profileRes = _profileService.GetProfile(Int32.Parse(accountId));
             if(profileRes == null)
             {
                 response.Code = 404; 
@@ -44,8 +54,15 @@ namespace net_design_pattern.Controllers
         public ActionResult UpdateProfile([FromBody] ProfileDto profile)
         {
             var response = new Response<ProfileDto>();
-            int accountId = 3;
-            var profileRes = _profileService.EditProfile(accountId, profile);
+            var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var profileRes = _profileService.EditProfile(Int32.Parse(accountId), profile);
             if(profileRes == null)
             {
                 response.Code = 404; 
@@ -64,8 +81,15 @@ namespace net_design_pattern.Controllers
         public ActionResult  GetUserProfileByEmail(string email)
         {
             var response = new Response<ProfileDto>();
-            int accountId = 2; //Get from login (admmin account)
-            var profileRes = _profileService.GetProfileByEmail(accountId, email);
+             var accountId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            if(accountId == null)
+            {
+                response.Code = 401; // authenticate error code
+                response.IsSuccess = false;
+                response.Message = "User don't have permission.";
+                return Unauthorized(response);
+            }
+            var profileRes = _profileService.GetProfileByEmail(Int32.Parse(accountId), email);
             if(profileRes == null)
             {
                 response.Code = 404; 
