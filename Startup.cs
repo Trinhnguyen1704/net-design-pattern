@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ using net_design_pattern.Services.Admin;
 using net_design_pattern.Services.Authorization;
 using net_design_pattern.Services.Common;
 using net_design_pattern.Services.User;
+using Swashbuckle.AspNetCore;
 
 namespace net_design_pattern
 {
@@ -49,9 +51,16 @@ namespace net_design_pattern
             services.AddControllers();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
+            services.AddLogging();
+            services.AddMvc();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "net_design_pattern", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "net_design_pattern",
+                                                     Version = "v1",
+                                                     Description = "A simple example ASP.NET Core Web API", 
+                                                     Contact = new OpenApiContact { Name = "Jessie", Email = "trinh@gmail.coms"},
+                                                     });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()  
                 {  
                     Name = "Authorization",  
