@@ -135,7 +135,10 @@ namespace net_design_pattern.Controllers
             response.Message = "Update Category successfully.";
             return Ok(response);
         }
-
+        /// <summary>
+        /// Deletes a specific CategoryItem.
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("category/{categoryId}")]
         public ActionResult DeleteCategory(int categoryId)
         {
