@@ -35,6 +35,8 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get add categories.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="400">If the item is null</response>
         [HttpGet("category")]
         public ActionResult GetCategories()
         {
