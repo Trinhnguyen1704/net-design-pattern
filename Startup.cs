@@ -49,8 +49,6 @@ namespace net_design_pattern
         {
             //IoC, Service Collection: 3 type Scope, Singleton and Transient
             //Register Service
-
-
             services.AddControllers();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
@@ -58,6 +56,7 @@ namespace net_design_pattern
             services.AddMvc();
             services.AddOptions();
 
+            //Configure Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "net_design_pattern",
@@ -65,11 +64,12 @@ namespace net_design_pattern
                                                      Description = "A simple example ASP.NET Core Web API", 
                                                      Contact = new OpenApiContact { Name = "Jessie", Email = "trinh@gmail.coms", Url = new Uri("https://www.facebook.com/profile.php?id=100011643972090"),},
                                                      });
-                // c.OperationFilter<RemoveApiVersionFromParamsOperationFilter>()
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                //Add authentication
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()  
                 {  
                     Name = "Authorization",  
@@ -79,10 +79,11 @@ namespace net_design_pattern
                     In = ParameterLocation.Header,  
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",  
                 });  
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement  
                 {  
                     {  
-                          new OpenApiSecurityScheme  
+                        new OpenApiSecurityScheme  
                             {  
                                 Reference = new OpenApiReference  
                                 {  
@@ -90,8 +91,7 @@ namespace net_design_pattern
                                     Id = "Bearer"  
                                 }  
                             },  
-                            new string[] {}  
-  
+                        new string[] {}  
                     }  
                 });  
             });
@@ -130,7 +130,7 @@ namespace net_design_pattern
             
             //Add singleton, 
             services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
-
+            //
             services.AddTransient<ILoginRepository, LoginRepository>();
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IPasswordService, PasswordService>();
