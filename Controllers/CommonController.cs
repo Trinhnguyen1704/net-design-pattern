@@ -22,6 +22,10 @@ namespace net_design_pattern.Controllers
         {
             _productService = productService;
         }
+
+        /// <summary>
+        /// Get all products.
+        /// </summary>
         [HttpGet("/product")]
         public ActionResult GetProducts()
         {
@@ -48,6 +52,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get product by product Id.
+        /// </summary>
         [HttpGet("/product/{productId}")]
         public ActionResult GetProductById(int productId)
         {
@@ -73,6 +80,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Add new product item.
+        /// </summary>
         [HttpPost("/product")]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
@@ -99,6 +109,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Update a specific product.
+        /// </summary>
         [HttpPut("/product/{productId}")]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
         {
@@ -125,6 +138,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get products by category id.
+        /// </summary>
         [HttpGet("/product/category/{categoryId}")]
         public ActionResult GetProductsByCategoryId(int categoryId)
         {
@@ -150,6 +166,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Delete a specific product item.
+        /// </summary>
         [HttpDelete("/product/{productId}")]
         public ActionResult DeleteProduct(int productId)
         {

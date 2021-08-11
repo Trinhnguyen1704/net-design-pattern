@@ -32,6 +32,9 @@ namespace net_design_pattern.Controllers
         //     var accountId = 2;
         //     return _roleRepository.GetRoles(accountId);
         // }
+        /// <summary>
+        /// Get add categories.
+        /// </summary>
         [HttpGet("category")]
         public ActionResult GetCategories()
         {
@@ -58,6 +61,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get category by category id.
+        /// </summary>
         [HttpGet("category/{categoryId}")]
         public ActionResult GetCategory(int categoryId)
         {
@@ -83,6 +89,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Add new CategoryItem.
+        /// </summary>
         [HttpPost("category")]
         public ActionResult AddCategory([FromBody] CategoryDto category)
         {
@@ -109,6 +118,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Update a specific CategoryItem.
+        /// </summary>
         [HttpPut("category/{categoryId}")]
         public ActionResult UpdateCategory(int categoryId, [FromBody] CategoryDto category)
         {
@@ -138,7 +150,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Deletes a specific CategoryItem.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="categoryId"></param>
         [HttpDelete("category/{categoryId}")]
         public ActionResult DeleteCategory(int categoryId)
         {

@@ -19,6 +19,10 @@ namespace Namespace
         {
             _loginService = loginService;
         }
+
+        /// <summary>
+        /// Login to application.
+        /// </summary>
         //attribute to bypass the authentication.
         [AllowAnonymous]
         [HttpPost("login")]

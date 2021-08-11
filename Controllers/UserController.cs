@@ -23,6 +23,9 @@ namespace net_design_pattern.Controllers
             _profileService = profileService;
         }
 
+        /// <summary>
+        /// Get user profile.
+        /// </summary>
         //Get profile with user logined
         [HttpGet("profile")]
         public ActionResult  GetUserProfile()
@@ -49,6 +52,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Update profile.
+        /// </summary>
         //Edit profile
         [HttpPut("profile")]
         public ActionResult UpdateProfile([FromBody] ProfileDto profile)
@@ -76,6 +82,9 @@ namespace net_design_pattern.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get profile by email.
+        /// </summary>
         //Get profile by email, for admin want to search
         [HttpGet("profile/{email}")]
         public ActionResult  GetUserProfileByEmail(string email)
