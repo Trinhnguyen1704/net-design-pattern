@@ -15,9 +15,35 @@ namespace Namespace
     public class AuthorizationController : ControllerBase
     {   
         private readonly ILoginService _loginService;
-        public AuthorizationController(ILoginService loginService)
+        private readonly IRegisterService _registerService;
+        public AuthorizationController(ILoginService loginService, IRegisterService registerService)
         {
             _loginService = loginService;
+            _registerService = registerService;
+        }
+        /// <summary>
+        /// Register new account.
+        /// </summary>
+        //attribute to bypass the authentication.
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public ActionResult Register([FromBody] RegisterModel register)
+        {
+            var response = new RegisterResponse();
+            bool checkAccountExistence = _registerService.CheckAccountExistence(register.Email);
+            if(checkAccountExistence == true)
+            {
+                var message = new BaseResponse(400, "Email is existing!");
+                return BadRequest(message);
+            }
+            int checkRegister = _registerService.Register(register);
+            if(checkRegister == -1)
+            {
+                response.IsSuccess = false;
+                return BadRequest(response);
+            }
+            response.AccountId = checkRegister;
+            return Ok(response);
         }
 
         /// <summary>
