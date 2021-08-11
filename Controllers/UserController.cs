@@ -10,7 +10,7 @@ using net_design_pattern.Domain.Services.User;
 namespace net_design_pattern.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api")]
     [ApiController]
     public class UserController : ControllerBase
     {

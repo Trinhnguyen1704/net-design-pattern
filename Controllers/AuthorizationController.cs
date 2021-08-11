@@ -6,7 +6,7 @@ using net_design_pattern.Domain.Services.Communication;
 
 namespace Namespace
 {
-    [Route("[controller]")]
+    [Route("api")]
     [ApiController]
     public class AuthorizationController : ControllerBase
     {   

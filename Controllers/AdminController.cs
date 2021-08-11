@@ -12,7 +12,7 @@ using net_design_pattern.Domain.Services.Communication;
 namespace net_design_pattern.Controllers
 {
     [Authorize]
-    [Route("[controller]")]
+    [Route("api")]
     [ApiController]
     public class AdminController : ControllerBase
     {

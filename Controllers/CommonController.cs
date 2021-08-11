@@ -25,7 +25,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get all products.
         /// </summary>
-        [HttpGet("/product")]
+        [HttpGet("product")]
         public ActionResult GetProducts()
         {
             //Use a common response so it is easy for fe to get and use data.
@@ -54,7 +54,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get product by product Id.
         /// </summary>
-        [HttpGet("/product/{productId}")]
+        [HttpGet("product/{productId}")]
         public ActionResult GetProductById(int productId)
         {
             var response = new Response<ProductDto>();
@@ -82,7 +82,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Add new product item.
         /// </summary>
-        [HttpPost("/product")]
+        [HttpPost("product")]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
             var response = new Response<ProductDto>();
@@ -111,7 +111,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update a specific product.
         /// </summary>
-        [HttpPut("/product/{productId}")]
+        [HttpPut("product/{productId}")]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
         {
             var response = new Response<ProductDto>();
@@ -140,7 +140,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get products by category id.
         /// </summary>
-        [HttpGet("/product/category/{categoryId}")]
+        [HttpGet("product/category/{categoryId}")]
         public ActionResult GetProductsByCategoryId(int categoryId)
         {
             var response = new Response<List<ProductDto>>();
@@ -168,7 +168,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Delete a specific product item.
         /// </summary>
-        [HttpDelete("/product/{productId}")]
+        [HttpDelete("product/{productId}")]
         public ActionResult DeleteProduct(int productId)
         {
             var response = new Response<string>("");
