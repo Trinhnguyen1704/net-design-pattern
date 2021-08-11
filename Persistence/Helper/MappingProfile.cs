@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using net_design_pattern.Domain.Models;
 using net_design_pattern.Domain.Models.DTOs;
