@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using net_design_pattern.Domain.Repositories.Admin;
@@ -53,14 +56,20 @@ namespace net_design_pattern
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
             services.AddLogging();
             services.AddMvc();
+            services.AddOptions();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "net_design_pattern",
                                                      Version = "v1",
                                                      Description = "A simple example ASP.NET Core Web API", 
-                                                     Contact = new OpenApiContact { Name = "Jessie", Email = "trinh@gmail.coms"},
+                                                     Contact = new OpenApiContact { Name = "Jessie", Email = "trinh@gmail.coms", Url = new Uri("https://www.facebook.com/profile.php?id=100011643972090"),},
                                                      });
+                // c.OperationFilter<RemoveApiVersionFromParamsOperationFilter>()
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()  
                 {  
                     Name = "Authorization",  
@@ -86,6 +95,7 @@ namespace net_design_pattern
                     }  
                 });  
             });
+
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("AppCnn")));
 
@@ -131,6 +141,7 @@ namespace net_design_pattern
         {
             if (env.IsDevelopment())
             {
+                app.UseStaticFiles();
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "net_design_pattern v1"));
