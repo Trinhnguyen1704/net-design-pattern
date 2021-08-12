@@ -21,22 +21,36 @@ namespace ProjectService.Tests
 {
     public class AdminControllerTesting
     {
-        AdminController _controller;
-        // ICategoryService _categoryService;
-        IRoleRepository  _roleRepository;
         private readonly Mock<ICategoryService> categoryService = new();
         private readonly Mock<IRoleRepository> roleRepository = new();
         private readonly IMapper _mapper;
-        public AdminControllerTesting()
-        {
-            // _categoryService = new CategoryService(categoryRep.Object, roleRepository.Object, _mapper);
-            _controller = new AdminController(_roleRepository, categoryService.Object);
-        }
+
          [Fact]
-        public void GetCategories_ReturnBadRequest()
+        public void GetAllCategoriesTest()
         { 
-            var result = _controller.GetCategories();
-            Assert.IsType<BadRequestObjectResult>(result);
+            List<CategoryDto> allCategories = new List<CategoryDto>
+            {
+                new CategoryDto() {Id = 1, Name = "Iphone"},
+                new CategoryDto() {Id = 2, Name = "Samsung"},
+                new CategoryDto() {Id = 3, Name = "Oppo"},
+            };
+            //Arrange
+            categoryService.Setup(sv => sv.GetCategories(3)).Returns(allCategories);
+            roleRepository.Setup(sv => sv.CheckRole(3));
+            var _controller = new AdminController(roleRepository.Object, categoryService.Object);
+            //Act
+            var result = categoryService.Object.GetCategories(3);
+            //Assert
+            result.Should().HaveCount(3);
         }
+
+        // private CategoryDto CreateCategoryDto()
+        // {
+        //     return new()
+        //     {
+        //         Id = Guid.NewGuid(),
+        //         Name = Guid.NewGuid().ToString()
+        //     };
+        // }
     }
 }
