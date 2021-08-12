@@ -48,11 +48,11 @@ namespace net_design_pattern.Services.Admin
 
         public List<CategoryDto> GetCategories(int accountId)
         {
-            var checkRole = _roleRepository.CheckRole(accountId);
-            if (!checkRole)
-            {
-                return null;
-            }
+            // var checkRole = _roleRepository.CheckRole(accountId);
+            // if (!checkRole)
+            // {
+            //     return null;
+            // }
             var listCategories = _categoryRepository.GetCategories();
             var listCategoryRes = _mapper.Map<List<CategoryDto>>(listCategories);
     
@@ -61,11 +61,11 @@ namespace net_design_pattern.Services.Admin
 
         public CategoryDto GetCategoryById(int accountId, int categoryId)
         {
-            var checkRole = _roleRepository.CheckRole(accountId);
-            if (!checkRole)
-            {
-                return null;
-            }
+            // var checkRole = _roleRepository.CheckRole(accountId);
+            // if (!checkRole)
+            // {
+            //     return null;
+            // }
             var category = _categoryRepository.GetCategoryById(categoryId);
             if (category == null)
             {
