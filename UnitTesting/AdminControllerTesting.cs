@@ -26,7 +26,7 @@ namespace ProjectService.Tests
         private readonly IMapper _mapper;
 
          [Fact]
-        public void GetAllCategoriesTest()
+        public void GetAllCategories_ReturnOkOjectReques_Test()
         { 
             List<CategoryDto> allCategories = new List<CategoryDto>
             {
@@ -35,13 +35,14 @@ namespace ProjectService.Tests
                 new CategoryDto() {Id = 3, Name = "Oppo"},
             };
             //Arrange
-            categoryService.Setup(sv => sv.GetCategories(3)).Returns(allCategories);
-            roleRepository.Setup(sv => sv.CheckRole(3));
+            categoryService.Setup(sv => sv.GetCategories(2)).Returns(allCategories);
+            roleRepository.Setup(sv => sv.CheckRole(2)).Returns(true);
             var _controller = new AdminController(roleRepository.Object, categoryService.Object);
             //Act
-            var result = categoryService.Object.GetCategories(3);
+            var result = _controller.GetCategories();
             //Assert
-            result.Should().HaveCount(3);
+            //result.Should().HaveCount(3);
+            Assert.IsType<OkObjectResult>(result);
         }
 
         // private CategoryDto CreateCategoryDto()
