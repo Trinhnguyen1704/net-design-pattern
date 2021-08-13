@@ -29,6 +29,7 @@ namespace net_design_pattern.Tests
                 new Category() {Id =3, Name = "Samsung"}
             };
 
+        //test get all categories service
         [Fact]
         public void CategoryService_GetAll_Test()
         {
@@ -47,6 +48,33 @@ namespace net_design_pattern.Tests
             //assert
             Assert.NotNull(result);
             result.Should().HaveCount(3);
+        }
+
+        //test add category service
+        [Fact]
+        public void CategoryService_AddNewItem_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            int accountId = 2;
+            var mapper = mockMapper.CreateMapper();
+            _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
+
+            CategoryDto category = new CategoryDto();
+            int id = 1;
+            category.Name = "Test";
+
+            _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
+            {
+                res.Id = id;
+                return res;
+            });
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(true);
+            var result = _categoryService.AddCategory(accountId, category);
+            Assert.NotNull(result);
+            result.Id.Should().Equals(id);
         }
         // private readonly Mock<ICategoryService> categoryService = new();
         // private readonly Mock<IRoleRepository> roleRepository = new();
