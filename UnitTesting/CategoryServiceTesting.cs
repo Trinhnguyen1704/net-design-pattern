@@ -17,9 +17,9 @@ using net_design_pattern.Services.Admin;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 
-namespace ProjectService.Tests
+namespace net_design_pattern.Tests
 {
-    public class AdminControllerTesting
+    public class CategoryServiceTesting
     {
         private readonly Mock<ICategoryService> categoryService = new();
         private readonly Mock<IRoleRepository> roleRepository = new();
