@@ -151,3 +151,4 @@ e:\TrainingEnclave\Tech\DesignPattern\net-design-pattern\bin\Debug\net5.0\net-de
 e:\TrainingEnclave\Tech\DesignPattern\net-design-pattern\bin\Debug\net5.0\FluentAssertions.dll
 e:\TrainingEnclave\Tech\DesignPattern\net-design-pattern\bin\Debug\net5.0\Castle.Core.dll
 e:\TrainingEnclave\Tech\DesignPattern\net-design-pattern\bin\Debug\net5.0\Moq.dll
+e:\TrainingEnclave\Tech\DesignPattern\net-design-pattern\bin\Debug\net5.0\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

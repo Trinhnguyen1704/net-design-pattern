@@ -48,6 +48,7 @@
           "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
           "Microsoft.NET.Test.Sdk": "16.10.0",
+          "Microsoft.VisualStudio.UnitTesting": "11.0.50727.1",
           "Moq": "4.16.1",
           "Swashbuckle.AspNetCore": "6.1.5",
           "System.IdentityModel.Tokens.Jwt": "6.12.0",
@@ -1218,6 +1219,17 @@
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.Common.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll": {},
           "lib/netcoreapp2.1/testhost.dll": {}
+        }
+      },
+      "Microsoft.VisualStudio.UnitTesting/11.0.50727.1": {
+        "runtime": {
+          "lib/net45/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "11.0.50727.1"
+          }
+        },
+        "compile": {
+          "lib/net45/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -4410,6 +4422,13 @@
       "sha512": "sha512-KAlB2QQRwznIH02WNl9eAuUP6/tn4IbAw4EXrvV1POTUjxuv4Dqg0u3Nn5lC9T3WIHupCHfsTcJMgsJYdi31Ig==",
       "path": "microsoft.testplatform.testhost/16.10.0",
       "hashPath": "microsoft.testplatform.testhost.16.10.0.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.UnitTesting/11.0.50727.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DoqQ6Zl7GcytRa1isWv20MyV1znFRDje6k/y3edbew3Qx/Z1r5Cf6rBktD7lGxN97d2VVC5RzdFHw+dci9lsMw==",
+      "path": "microsoft.visualstudio.unittesting/11.0.50727.1",
+      "hashPath": "microsoft.visualstudio.unittesting.11.0.50727.1.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
