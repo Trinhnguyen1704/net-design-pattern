@@ -25,8 +25,9 @@ namespace ProjectService.Tests
         private readonly Mock<IRoleRepository> roleRepository = new();
         private readonly IMapper _mapper;
 
-         [Fact]
-        public void GetAllCategories_ReturnOkOjectReques_Test()
+        // Unit test get all categories successfully.
+        [Fact]
+        public void GetAllCategories_ReturnOkOjectRequest_Test()
         { 
             List<CategoryDto> allCategories = new List<CategoryDto>
             {
@@ -44,6 +45,25 @@ namespace ProjectService.Tests
             //result.Should().HaveCount(3);
             Assert.IsType<OkObjectResult>(result);
         }
+
+        // Unit test count total category records
+        [Fact]
+        public void GetAllCategories_CountTotalRecord_Test()
+        { 
+            List<CategoryDto> allCategories = new List<CategoryDto>
+            {
+                new CategoryDto() {Id = 1, Name = "Iphone"},
+                new CategoryDto() {Id = 2, Name = "Samsung"},
+                new CategoryDto() {Id = 3, Name = "Oppo"},
+            };
+            //Arrange
+            categoryService.Setup(sv => sv.GetCategories(3)).Returns(allCategories);
+            //Act
+            var result = categoryService.Object.GetCategories(3);
+            //Assert
+            result.Should().HaveCount(3);
+        }
+
 
         // private CategoryDto CreateCategoryDto()
         // {
