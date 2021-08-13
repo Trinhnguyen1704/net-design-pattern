@@ -9,12 +9,45 @@ using Moq;
 using net_design_pattern.Domain.Repositories.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+// using Microsoft.VisualStudio.TestTools.UnitTesting;
+using net_design_pattern.Domain.Repositories.Admin;
+using net_design_pattern.Services.Admin;
+using net_design_pattern.Domain.Models;
+using net_design_pattern.Persistence.Helper;
 
 namespace net_design_pattern.Tests
 {
-    [TestClass]
     public class CategoryServiceTesting
     {
+        private Mock<ICategoryRepository> _categoryRepository = new Mock<ICategoryRepository>();
+        private Mock<IRoleRepository> _roleRepository = new Mock<IRoleRepository>();
+        private ICategoryService _categoryService;
+        private List<Category> _listCategory = new List<Category>()
+            {
+                new Category() {Id =1, Name = "Iphone"},
+                new Category() {Id =2, Name = "Oppo"},
+                new Category() {Id =3, Name = "Samsung"}
+            };
+
+        [Fact]
+        public void CategoryService_GetAll_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+            _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
+            var accountId = 2;
+            //arrange
+            _categoryRepository.Setup(c => c.GetCategories()).Returns(_listCategory);
+            //act
+            var result = _categoryService.GetCategories(accountId) as List<CategoryDto>;
+
+            //assert
+            Assert.NotNull(result);
+            result.Should().HaveCount(3);
+        }
         // private readonly Mock<ICategoryService> categoryService = new();
         // private readonly Mock<IRoleRepository> roleRepository = new();
         // private readonly IMapper _mapper;
