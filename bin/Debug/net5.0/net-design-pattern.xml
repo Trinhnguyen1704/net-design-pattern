@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>net-design-pattern</name>
+    </assembly>
+    <members>
+        <member name="M:net_design_pattern.Controllers.AdminController.GetCategories">
+            <summary>
+            Get add categories.
+            </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="400">If the item is null</response>
+        </member>
+        <member name="M:net_design_pattern.Controllers.AdminController.GetCategory(System.Int32)">
+            <summary>
+            Get category by category id.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.AdminController.AddCategory(net_design_pattern.Domain.Models.DTOs.CategoryDto)">
+            <summary>
+            Add new CategoryItem.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.AdminController.UpdateCategory(System.Int32,net_design_pattern.Domain.Models.DTOs.CategoryDto)">
+            <summary>
+            Update a specific CategoryItem.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.AdminController.DeleteCategory(System.Int32)">
+            <summary>
+            Deletes a specific CategoryItem.
+            </summary>
+            <param name="categoryId"></param>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.GetProducts">
+            <summary>
+            Get all products.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.GetProductById(System.Int32)">
+            <summary>
+            Get product by product Id.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.AddProduct(net_design_pattern.Domain.Models.DTOs.ProductDto)">
+            <summary>
+            Add new product item.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.UpdateProduct(System.Int32,net_design_pattern.Domain.Models.DTOs.ProductDto)">
+            <summary>
+            Update a specific product.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.GetProductsByCategoryId(System.Int32)">
+            <summary>
+            Get products by category id.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.CommonController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete a specific product item.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.UserController.GetUserProfile">
+            <summary>
+            Get user profile.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.UserController.UpdateProfile(net_design_pattern.Domain.Models.DTOs.ProfileDto)">
+            <summary>
+            Update profile.
+            </summary>
+        </member>
+        <member name="M:net_design_pattern.Controllers.UserController.GetUserProfileByEmail(System.String)">
+            <summary>
+            Get profile by email.
+            </summary>
+        </member>
+        <member name="M:Namespace.AuthorizationController.Register(net_design_pattern.Domain.Models.Authorization.RegisterModel)">
+            <summary>
+            Register new account.
+            </summary>
+        </member>
+        <member name="M:Namespace.AuthorizationController.Login(net_design_pattern.Domain.Models.Authorization.LoginModel)">
+            <summary>
+            Login to application.
+            </summary>
+        </member>
+    </members>
+</doc>
