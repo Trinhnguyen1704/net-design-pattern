@@ -76,6 +76,28 @@ namespace net_design_pattern.Tests
             Assert.NotNull(result);
             result.Id.Should().Equals(id);
         }
+
+        // Test get category by Id
+        [Fact]
+        public void CategoryService_GetCategoryById_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+            _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
+            var accountId = 2;
+            var expectedItem = _listCategory[1];
+            //arrange
+            _categoryRepository.Setup(c => c.GetCategoryById(It.IsAny<int>())).Returns(expectedItem);
+            //act
+            var result = _categoryService.GetCategoryById(accountId, expectedItem.Id) as CategoryDto;
+
+            //assert
+            Assert.NotNull(result);
+            result.Id.Should().Equals(expectedItem.Id);
+        }
         // private readonly Mock<ICategoryService> categoryService = new();
         // private readonly Mock<IRoleRepository> roleRepository = new();
         // private readonly IMapper _mapper;
