@@ -144,31 +144,30 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             result.Should().Equals(true);
         }
 
-        // test update category service
-        // [Fact]
-        // public void CategoryService_UpdateItemWithFalseRole_Test()
-        // {
-        //     var mockMapper = new MapperConfiguration(cfg =>
-        //     {
-        //         cfg.AddProfile(new MappingProfile());
-        //     });
-        //     int accountId = 2;
-        //     var mapper = mockMapper.CreateMapper();
-        //     _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
+        //test update category service
+        [Fact]
+        public void CategoryService_UpdateItemWithFalseRole_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            int accountId = 2;
+            var mapper = mockMapper.CreateMapper();
+            _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
 
-        //     CategoryDto category = new CategoryDto();
-        //     int id = 1;
-        //     category.Name = "Test";
+            CategoryDto category = new CategoryDto();
+            int id = 1;
+            category.Name = "Test";
 
-        //     _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
-        //     {
-        //         res.Id = id;
-        //         return res;
-        //     });
-        //     _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
-        //     var result = _categoryService.AddCategory(accountId, category);
-        //     Assert.NotNull(result);
-        //     result.Id.Should().Equals(id);
-        // }
+            _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
+            {
+                res.Id = id;
+                return res;
+            });
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
+            var result = _categoryService.UpdateCategory(accountId,id, category);
+            Assert.Null(result);
+        }
     }
 }
