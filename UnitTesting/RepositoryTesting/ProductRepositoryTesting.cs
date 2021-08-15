@@ -63,5 +63,52 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 list.Should().HaveCount(2);
             }
         }
+        //get all product test
+         [Fact]
+        public void ProductRepository_GetProductById_Test()
+        {
+            //Arrange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "IPhone"
+                });
+                context.Products.Add(new Product
+                {
+                    Id = 1,
+                    Name = "IPhone 9",
+                    Price = 120,
+                    NumInStock = 10,
+                    Description = "This is Iphone 9",
+                    IsAvailable = 1,
+                    CategoryId = 1
+                });
+                context.Products.Add(new Product
+                {
+                    Id = 2,
+                    Name = "IPhone 12",
+                    Price = 140,
+                    NumInStock = 20,
+                    Description = "This is Iphone 12",
+                    IsAvailable = 1,
+                    CategoryId = 1
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                productRepository = new ProductRepository(context);
+                //Act
+                var product = productRepository.GetProductById(1);
+                //Assert
+                Assert.NotNull(product);
+                product.Id.Should().Equals(1);
+            }
+        }
     }
 }
