@@ -16,6 +16,7 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
     {
         ICategoryRepository categoryRepository;
         
+        //get all category test
         [Fact]
         public void CategoryRepository_GetAll_Test()
         {
@@ -42,7 +43,8 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 list.Should().HaveCount(1);
             }
         }
-         [Fact]
+        //get category by id test
+        [Fact]
         public void CategoryRepository_GetCategoryById_Test()
         {
             //Arange
@@ -72,6 +74,40 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 Assert.NotNull(category);
                 category.Id.Should().Equals(1);
                 category.Name.Should().Equals("IPhone");
+            }
+        }
+
+        //add category test
+        [Fact]
+        public void CategoryRepository_AddCategory_Test()
+        {
+            //Arange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "IPad"
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                categoryRepository = new CategoryRepository(context);
+                Category category = new Category
+                {
+                    Id =2,
+                    Name = "IPhone"
+                };
+                //Act
+                var result = categoryRepository.AddCategory(category);
+                //Assert
+                Assert.NotNull(result);
+                result.Id.Should().Equals(2);
+                result.Name.Should().Equals("IPhone");
             }
         }
     }
