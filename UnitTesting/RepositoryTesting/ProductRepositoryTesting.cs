@@ -205,5 +205,41 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.Name.Should().Equals("IPhone 7 Plus");
             }
         }
+        //delete product test
+        [Fact]
+        public void ProductRepository_DeleteProduct_Test()
+        {
+            //Arrange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "IPhone"
+                });
+                context.Products.Add(new Product
+                {
+                    Id = 1,
+                    Name = "IPhone 9",
+                    Price = 120,
+                    NumInStock = 10,
+                    Description = "This is Iphone 9",
+                    IsAvailable = 1,
+                    CategoryId = 1
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                productRepository = new ProductRepository(context);
+                //Act
+                var result = productRepository.DeleteProduct(1);
+                //Assert
+                result.Should().Equals(true);
+            }
+        }
     }
 }
