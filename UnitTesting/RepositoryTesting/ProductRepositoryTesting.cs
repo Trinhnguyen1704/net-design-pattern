@@ -157,5 +157,53 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.Name.Should().Equals("IPhone 12");
             }
         }
+        //update product test
+        [Fact]
+        public void ProductRepository_UpdateProduct_Test()
+        {
+            //Arrange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "IPhone"
+                });
+                context.Products.Add(new Product
+                {
+                    Id = 1,
+                    Name = "IPhone 9",
+                    Price = 120,
+                    NumInStock = 10,
+                    Description = "This is Iphone 9",
+                    IsAvailable = 1,
+                    CategoryId = 1
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                productRepository = new ProductRepository(context);
+                var product = new Product
+                {
+                    Id = 1,
+                    Name = "IPhone 7 Plus",
+                    Price = 120,
+                    NumInStock = 20,
+                    Description = "This is Iphone 7 Plus",
+                    IsAvailable = 1,
+                    CategoryId = 1
+                };
+                //Act
+                var result = productRepository.UpdateProduct(1, product);
+                //Assert
+                Assert.NotNull(result);
+                result.Id.Should().Equals(1);
+                result.Name.Should().Equals("IPhone 7 Plus");
+            }
+        }
     }
 }
