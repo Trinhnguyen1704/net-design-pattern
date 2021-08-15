@@ -74,5 +74,26 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.Should().HaveCount(2);
             }
         }
+        [Fact]
+        public void ProfileRepository_CheckRoles_Test()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                var mockMapper = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new MappingProfile());
+                });
+                
+                var mapper = mockMapper.CreateMapper();
+                roleRepository = new RoleRepository(context, mapper);
+                //Act
+                var result = roleRepository.CheckRole(1);
+                //Assert
+                result.Should().Equals(true);
+            }
+        }
     }
 }
