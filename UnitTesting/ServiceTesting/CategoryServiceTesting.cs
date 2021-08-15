@@ -66,7 +66,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             int id = 1;
             category.Name = "Test";
 
-            _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
+            _categoryRepository.Setup(c => c.AddCategory(It.IsAny<Category>())).Returns((Category res) =>
             {
                 res.Id = id;
                 return res;
@@ -160,7 +160,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             int id = 1;
             category.Name = "Test";
 
-            _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
+            _categoryRepository.Setup(c => c.UpdateCategory(It.IsAny<int>(),It.IsAny<Category>())).Returns((Category res) =>
             {
                 res.Id = id;
                 return res;
