@@ -143,5 +143,36 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.Name.Should().Equals("IPad");
             }
         }
+        //Delete category test
+        [Fact]
+        public void CategoryRepository_DeleteCategory_Test()
+        {
+            //Arange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Categories.Add(new Category
+                {
+                    Id = 1,
+                    Name = "IPad"
+                });
+                context.Categories.Add(new Category
+                {
+                    Id = 2,
+                    Name = "IPhone"
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                categoryRepository = new CategoryRepository(context);
+                //Act
+                var result = categoryRepository.DeleteCategory(1);
+                //Assert
+                result.Should().Equals(true);
+            }
+        }
     }
 }
