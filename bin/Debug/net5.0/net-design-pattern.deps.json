@@ -40,15 +40,14 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.AspNetCore.StaticFiles": "2.2.0",
           "Microsoft.Data.SqlClient": "3.0.0",
-          "Microsoft.EntityFrameworkCore": "5.0.8",
+          "Microsoft.EntityFrameworkCore": "5.0.9",
           "Microsoft.EntityFrameworkCore.Design": "5.0.8",
-          "Microsoft.EntityFrameworkCore.InMemory": "5.0.8",
+          "Microsoft.EntityFrameworkCore.InMemory": "5.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.8",
           "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
           "Microsoft.NET.Test.Sdk": "16.10.0",
-          "Microsoft.VisualStudio.UnitTesting": "11.0.50727.1",
           "Moq": "4.16.1",
           "Swashbuckle.AspNetCore": "6.1.5",
           "System.IdentityModel.Tokens.Jwt": "6.12.0",
@@ -655,10 +654,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/5.0.8": {
+      "Microsoft.EntityFrameworkCore/5.0.9": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.8",
-          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.8",
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.9",
+          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.9",
           "Microsoft.Extensions.Caching.Memory": "5.0.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.Logging": "5.0.0",
@@ -668,26 +667,26 @@
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "5.0.8.0",
-            "fileVersion": "5.0.821.31512"
+            "assemblyVersion": "5.0.9.0",
+            "fileVersion": "5.0.921.36501"
           }
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/5.0.8": {
+      "Microsoft.EntityFrameworkCore.Abstractions/5.0.9": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "5.0.8.0",
-            "fileVersion": "5.0.821.31512"
+            "assemblyVersion": "5.0.9.0",
+            "fileVersion": "5.0.921.36501"
           }
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/5.0.8": {},
+      "Microsoft.EntityFrameworkCore.Analyzers/5.0.9": {},
       "Microsoft.EntityFrameworkCore.Design/5.0.8": {
         "dependencies": {
           "Humanizer.Core": "2.8.26",
@@ -701,14 +700,14 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/5.0.8": {
+      "Microsoft.EntityFrameworkCore.InMemory/5.0.9": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.8"
+          "Microsoft.EntityFrameworkCore": "5.0.9"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.InMemory.dll": {
-            "assemblyVersion": "5.0.8.0",
-            "fileVersion": "5.0.821.31512"
+            "assemblyVersion": "5.0.9.0",
+            "fileVersion": "5.0.921.36501"
           }
         },
         "compile": {
@@ -717,7 +716,7 @@
       },
       "Microsoft.EntityFrameworkCore.Relational/5.0.8": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.8",
+          "Microsoft.EntityFrameworkCore": "5.0.9",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
         },
         "runtime": {
@@ -1219,17 +1218,6 @@
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.Common.dll": {},
           "lib/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll": {},
           "lib/netcoreapp2.1/testhost.dll": {}
-        }
-      },
-      "Microsoft.VisualStudio.UnitTesting/11.0.50727.1": {
-        "runtime": {
-          "lib/net45/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "11.0.50727.1"
-          }
-        },
-        "compile": {
-          "lib/net45/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll": {}
         }
       },
       "Microsoft.Win32.Primitives/4.3.0": {
@@ -4164,26 +4152,26 @@
       "path": "microsoft.data.sqlclient.sni.runtime/3.0.0",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.3.0.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/5.0.8": {
+    "Microsoft.EntityFrameworkCore/5.0.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UzHZDWma5jJaDMBGnfsBC1h0+1bPzAZmEGnmEMy9xdn4UkO9yvrG7m0deRazvU98Ezoa9pqi4Bsp07WR8p8HUA==",
-      "path": "microsoft.entityframeworkcore/5.0.8",
-      "hashPath": "microsoft.entityframeworkcore.5.0.8.nupkg.sha512"
+      "sha512": "sha512-mA+W/zpJZMp802xt2D+qBXrme4VFN+FlsrHdU6WG5HKDAnezClRksJhJicUR8XojnSPp9SgZKa1aIAasB5G67g==",
+      "path": "microsoft.entityframeworkcore/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.5.0.9.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/5.0.8": {
+    "Microsoft.EntityFrameworkCore.Abstractions/5.0.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-twdaHC6Jy3Gzcr7qHBvgQi0q1mWJVJtrqkFcw21IFE/+1KkMTGOamV88vgPZY1NBZqnbdv1K83otDsUg9EO5ow==",
-      "path": "microsoft.entityframeworkcore.abstractions/5.0.8",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.5.0.8.nupkg.sha512"
+      "sha512": "sha512-csbpDaXe9iQUkvDS3JZRAFfkgcRA7BlHE3u8feBLlYervmTAS1WIWPBZKMtH0a2GO5njwAABU3j+hZMCPYBrzQ==",
+      "path": "microsoft.entityframeworkcore.abstractions/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.5.0.9.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/5.0.8": {
+    "Microsoft.EntityFrameworkCore.Analyzers/5.0.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iXH3FyGochg9ZePG1VQwVT3YGsvhn8jmQkhi7iIKfa16xgSevpa9jhKDflFSMZ9xI9xWAsOAiG+H+pG6Jsw/3w==",
-      "path": "microsoft.entityframeworkcore.analyzers/5.0.8",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.8.nupkg.sha512"
+      "sha512": "sha512-eyuPLRFjcF7VWH8qy1uUuMrO02W15n9EXAXnYjCTWgH0SDIeZAa2XZXMZ9U3dvOPtvllMBy0obYA5SSbnpaNoQ==",
+      "path": "microsoft.entityframeworkcore.analyzers/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.9.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Design/5.0.8": {
       "type": "package",
@@ -4192,12 +4180,12 @@
       "path": "microsoft.entityframeworkcore.design/5.0.8",
       "hashPath": "microsoft.entityframeworkcore.design.5.0.8.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.InMemory/5.0.8": {
+    "Microsoft.EntityFrameworkCore.InMemory/5.0.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LV9/hBseBO3kZKa/MPlWfLvfKL64Q7y2ZW2euW+kcNhhAQWsl52JIQHSL1Gu3CnzfQVbGUDkusnN4OWh6k/ALw==",
-      "path": "microsoft.entityframeworkcore.inmemory/5.0.8",
-      "hashPath": "microsoft.entityframeworkcore.inmemory.5.0.8.nupkg.sha512"
+      "sha512": "sha512-OKlzsZppmrKoJmLc40Fg4wkoMED3G2OHZJfmtulAw6MkMWxe9SV6bKSAeftc4ZTVYIHhym9SJz1p2YCTP0xJDw==",
+      "path": "microsoft.entityframeworkcore.inmemory/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.5.0.9.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/5.0.8": {
       "type": "package",
@@ -4422,13 +4410,6 @@
       "sha512": "sha512-KAlB2QQRwznIH02WNl9eAuUP6/tn4IbAw4EXrvV1POTUjxuv4Dqg0u3Nn5lC9T3WIHupCHfsTcJMgsJYdi31Ig==",
       "path": "microsoft.testplatform.testhost/16.10.0",
       "hashPath": "microsoft.testplatform.testhost.16.10.0.nupkg.sha512"
-    },
-    "Microsoft.VisualStudio.UnitTesting/11.0.50727.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-DoqQ6Zl7GcytRa1isWv20MyV1znFRDje6k/y3edbew3Qx/Z1r5Cf6rBktD7lGxN97d2VVC5RzdFHw+dci9lsMw==",
-      "path": "microsoft.visualstudio.unittesting/11.0.50727.1",
-      "hashPath": "microsoft.visualstudio.unittesting.11.0.50727.1.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
