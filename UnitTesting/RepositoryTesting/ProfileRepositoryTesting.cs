@@ -99,5 +99,49 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.AccountId.Should().Equals(1);
             }
         }
+        //Edit profile test
+        [Fact]
+        public void ProfileRepository_EditProfile_Test()
+        {
+            //Arrange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Profiles.Add(new Profile
+                {
+                    Id = 2,
+                    AccountId = 1,
+                    LastName = "Trinh",
+                    FirstName = "Nguyen",
+                    Address = "Quang Ngai",
+                    PhoneNumber = "0339934148",
+                    Gender = 0,
+                    DateOfBirth = DateTime.Parse("1999-04-17")
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                profileRepository = new ProfileRepository(context);
+                var profile = new Profile 
+                {
+                    Id = 2,
+                    AccountId = 1,
+                    LastName = "Trinh",
+                    FirstName = "Nguyen",
+                    Address = "Da Nang",
+                    PhoneNumber = "0339934147",
+                    Gender = 0,
+                    DateOfBirth = DateTime.Parse("1999-08-17")
+                };
+                //Act
+                var result = profileRepository.EditProfile(1, profile);
+                //Assert
+                Assert.NotNull(result);
+                result.Address.Should().Equals("Da Nang");
+            }
+        }
     }
 }
