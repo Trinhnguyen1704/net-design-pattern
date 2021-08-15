@@ -145,116 +145,30 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         }
 
         // test update category service
-        [Fact]
-        public void CategoryService_UpdateItemWithFalseRole_Test()
-        {
-            var mockMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            int accountId = 2;
-            var mapper = mockMapper.CreateMapper();
-            _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
-
-            CategoryDto category = new CategoryDto();
-            int id = 1;
-            category.Name = "Test";
-
-            _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
-            {
-                res.Id = id;
-                return res;
-            });
-            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
-            var result = _categoryService.AddCategory(accountId, category);
-            Assert.NotNull(result);
-            result.Id.Should().Equals(id);
-        }
-        // private readonly Mock<ICategoryService> categoryService = new();
-        // private readonly Mock<IRoleRepository> roleRepository = new();
-        // private readonly IMapper _mapper;
-
-        // // Unit test get all categories successfully.
         // [Fact]
-        // public void GetAllCategories_ReturnOkOjectRequest_Test()
-        // { 
-        //     List<CategoryDto> allCategories = PrepareData();
-        //     //Arrange
-        //     categoryService.Setup(sv => sv.GetCategories(2)).Returns(allCategories);
-        //     roleRepository.Setup(sv => sv.CheckRole(2)).Returns(true);
-        //     var _controller = new AdminController(roleRepository.Object, categoryService.Object);
-        //     //Act
-        //     var result = _controller.GetCategories();
-        //     //Assert
-        //     //result.Should().HaveCount(3);
-        //     Assert.IsType<OkObjectResult>(result);
-        // }
-
-        // // Unit test count total category records
-        // [Fact]
-        // public void GetAllCategories_CountTotalRecord_Test()
-        // { 
-        //     List<CategoryDto> allCategories = PrepareData();
-        //     //Arrange
-        //     categoryService.Setup(sv => sv.GetCategories(1)).Returns(allCategories);
-        //     //Act
-        //     var result = categoryService.Object.GetCategories(1);
-        //     //Assert
-        //     result.Should().HaveCount(3);
-        // }
-
-        // [Fact]
-        // public void GetCategoryById_ReturnExpectedResult_Test()
-        // { 
-        //     List<CategoryDto> allCategories = PrepareData();
-
-        //     var expectedItem = allCategories[2];
-        //     int accountId  = 2;
-        //     categoryService.Setup(sv => sv.GetCategoryById(accountId,It.IsAny<int>())).Returns(expectedItem);
-        //     //Act
-        //     CategoryDto result = categoryService.Object.GetCategoryById(accountId,expectedItem.Id);
-        //     //Assert
-        //     result.Should().BeEquivalentTo(expectedItem);
-        // }
-
-        // [Fact]
-        // public void AddCategory_ReturnAddedItem_Test()
-        // { 
-        //     var itemToAdd = new CategoryDto 
-        //     {
-        //         Id =4,
-        //         Name = "Ipad"
-        //     };
-
-        //     int accountId  = 2;
-        //     categoryService.Setup(sv => sv.AddCategory(accountId,It.IsAny<CategoryDto>())).Returns(itemToAdd);
-        //     //Act
-        //     var createdItem = categoryService.Object.AddCategory(accountId, itemToAdd);
-        //     //Assert
-        //     itemToAdd.Should().BeEquivalentTo(
-        //         createdItem,
-        //         options => options.ComparingByMembers<CategoryDto>().ExcludingMissingMembers()
-        //     );
-        // }
-
-
-        // // private CategoryDto CreateCategoryDto()
-        // // {
-        // //     return new()
-        // //     {
-        // //         Id = Guid.NewGuid(),
-        // //         Name = Guid.NewGuid().ToString()
-        // //     };
-        // // }
-        // public List<CategoryDto> PrepareData()
+        // public void CategoryService_UpdateItemWithFalseRole_Test()
         // {
-        //     List<CategoryDto> allCategories = new List<CategoryDto>
+        //     var mockMapper = new MapperConfiguration(cfg =>
         //     {
-        //         new CategoryDto() {Id = 1, Name = "Iphone"},
-        //         new CategoryDto() {Id = 2, Name = "Samsung"},
-        //         new CategoryDto() {Id = 3, Name = "Oppo"},
-        //     };
-        //     return allCategories;
+        //         cfg.AddProfile(new MappingProfile());
+        //     });
+        //     int accountId = 2;
+        //     var mapper = mockMapper.CreateMapper();
+        //     _categoryService = new CategoryService(_categoryRepository.Object,_roleRepository.Object, mapper);
+
+        //     CategoryDto category = new CategoryDto();
+        //     int id = 1;
+        //     category.Name = "Test";
+
+        //     _categoryRepository.Setup(c => c.AddCategory(mapper.Map<Category>(category))).Returns((Category res) =>
+        //     {
+        //         res.Id = id;
+        //         return res;
+        //     });
+        //     _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
+        //     var result = _categoryService.AddCategory(accountId, category);
+        //     Assert.NotNull(result);
+        //     result.Id.Should().Equals(id);
         // }
     }
 }
