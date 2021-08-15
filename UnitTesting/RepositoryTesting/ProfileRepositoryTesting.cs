@@ -49,5 +49,55 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.AccountId.Should().Equals(1);
             }
         }
+        //Get profile by email test
+        [Fact]
+        public void ProfileRepository_GetProfileByEmail_Test()
+        {
+            //Arrange
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+            using (var context = new AppDbContext(options))
+            {
+                context.Roles.Add(new Role
+                {
+                    Id = 1,
+                    Name = "ADMIN",
+                });
+                context.Accounts.Add(new Account
+                {
+                    Id = 1,
+                    Email = "trinh@gmail.com",
+                    Password = "123",
+                });
+                context.AccountHasRoles.Add(new AccountHasRole
+                {
+                    Id =1,
+                    AccountId = 1,
+                    RoleId = 1
+                });
+                context.Profiles.Add(new Profile
+                {
+                    Id = 2,
+                    AccountId = 1,
+                    LastName = "Trinh",
+                    FirstName = "Nguyen",
+                    Address = "Quang Ngai",
+                    PhoneNumber = "0339934148",
+                    Gender = 0,
+                    DateOfBirth = DateTime.Parse("1999-04-17")
+                });
+                context.SaveChanges();
+            }
+            using (var context = new AppDbContext(options))
+            {
+                profileRepository = new ProfileRepository(context);
+                //Act
+                var result = profileRepository.GetProfileByEmail("trinh@gmail.com");
+                //Assert
+                Assert.NotNull(result);
+                result.AccountId.Should().Equals(1);
+            }
+        }
     }
 }
