@@ -24,8 +24,12 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get user profile.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         //Get profile with user logined
         [HttpGet("profile")]
+        [ProducesResponseType(typeof(Response<ProfileDto>), 200)]
         public ActionResult  GetUserProfile()
         {
             var response = new Response<ProfileDto>();
@@ -53,8 +57,12 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update profile.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         //Edit profile
         [HttpPut("profile")]
+        [ProducesResponseType(typeof(Response<ProfileDto>), 200)]
         public ActionResult UpdateProfile([FromBody] ProfileDto profile)
         {
             var response = new Response<ProfileDto>();
@@ -83,8 +91,12 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get profile by email.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         //Get profile by email, for admin want to search
         [HttpGet("profile/{email}")]
+        [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult  GetUserProfileByEmail(string email)
         {
             var response = new Response<ProfileDto>();
