@@ -21,6 +21,7 @@ namespace Namespace
         /// Register new account.
         /// </summary>
         //attribute to bypass the authentication.
+        /// <response code="400">If Invalid request or email is already extist.</response>
         [AllowAnonymous]
         [HttpPost("register")]
         public ActionResult Register([FromBody] RegisterModel register)
@@ -45,6 +46,7 @@ namespace Namespace
         /// <summary>
         /// Login to application.
         /// </summary>
+        /// <response code="400">If Invalid request .</response>
         //attribute to bypass the authentication.
         [AllowAnonymous]
         [HttpPost("login")]

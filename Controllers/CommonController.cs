@@ -25,6 +25,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get all products.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpGet("product")]
         public ActionResult GetProducts()
         {
@@ -41,7 +44,7 @@ namespace net_design_pattern.Controllers
             var products =  _productService.GetProducts(Int32.Parse(accountId));
             if(products == null)
             {
-                response.Code = 404; // Bad request error code
+                response.Code = 400; // Bad request error code
                 response.IsSuccess = false;
                 response.Message = "User don't have permission.";
                 return BadRequest(response);
@@ -54,6 +57,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get product by product Id.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpGet("product/{productId}")]
         public ActionResult GetProductById(int productId)
         {
@@ -82,6 +88,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Add new product item.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="201">Return the newly created item.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpPost("product")]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
@@ -111,6 +120,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update a specific product.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpPut("product/{productId}")]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
         {
@@ -140,6 +152,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get products by category id.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpGet("product/category/{categoryId}")]
         public ActionResult GetProductsByCategoryId(int categoryId)
         {
@@ -168,6 +183,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Delete a specific product item.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpDelete("product/{productId}")]
         public ActionResult DeleteProduct(int productId)
         {
