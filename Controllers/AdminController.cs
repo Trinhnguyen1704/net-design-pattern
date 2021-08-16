@@ -32,10 +32,11 @@ namespace net_design_pattern.Controllers
         //     return _roleRepository.GetRoles(accountId);
         // }
         /// <summary>
-        /// Get add categories.
+        /// Get all categories.
         /// </summary>
         /// <response code="401">If user is not authenticated.</response>
-        /// <response code="400">If the item is null</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpGet("category")]
         public ActionResult GetCategories()
         {
@@ -52,7 +53,7 @@ namespace net_design_pattern.Controllers
             var categories = _categoryService.GetCategories(Int32.Parse(accountId));
             if(categories == null)
             {
-                //response.Code = 404; // Bad request error code
+                response.Code = 400; // Bad request error code
                 response.IsSuccess = false;
                 response.Message = "User don't have permission.";
                 return BadRequest(response);
@@ -65,6 +66,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Get category by category id.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpGet("category/{categoryId}")]
         public ActionResult GetCategory(int categoryId)
         {
@@ -80,7 +84,7 @@ namespace net_design_pattern.Controllers
             var category =  _categoryService.GetCategoryById(Int32.Parse(accountId), categoryId);
             if(category == null)
             {
-                //response.Code = 404; // Bad request error code
+                response.Code = 404; // 
                 response.IsSuccess = false;
                 response.Message = "Category is not exist.";
                 return NotFound(response);
@@ -93,6 +97,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Add new CategoryItem.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpPost("category")]
         public ActionResult AddCategory([FromBody] CategoryDto category)
         {
@@ -109,9 +116,9 @@ namespace net_design_pattern.Controllers
 
             if (categoryRes == null)
             {
-                response.Code = 401;
+                response.Code = 400;
                 response.IsSuccess = false;
-                response.Message = "User don't have permission.";
+                response.Message = "Add category failed.";
                 return Unauthorized(response);
             }
             response.Data = categoryRes;
@@ -122,6 +129,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update a specific CategoryItem.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         [HttpPut("category/{categoryId}")]
         public ActionResult UpdateCategory(int categoryId, [FromBody] CategoryDto category)
         {
@@ -151,6 +161,9 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Deletes a specific CategoryItem.
         /// </summary>
+        /// <response code="401">If user is not authenticated.</response>
+        /// <response code="404">If result is not found.</response>
+        /// <response code="400">If Invalid request .</response>
         /// <param name="categoryId"></param>
         [HttpDelete("category/{categoryId}")]
         public ActionResult DeleteCategory(int categoryId)
