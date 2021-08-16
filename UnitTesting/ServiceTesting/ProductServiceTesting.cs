@@ -114,8 +114,10 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         }
         
         //test delete product with false role
-        [Fact]
-        public void ProductService_DeleteByIdWithFalseRole_Test()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ProductService_DeleteByIdWithFalseRole_Test(bool checkRole)
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
@@ -126,33 +128,20 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             var accountId = 2;
             int productId = 1;
             //arrange
-            _productRepository.Setup(c => c.DeleteProduct(It.IsAny<int>())).Returns(true);
+            _productRepository.Setup(c => c.DeleteProduct(It.IsAny<int>())).Returns(checkRole);
             _roleRepository.Setup(r => r.CheckRole(It.IsAny<int>())).Returns(false);
             //act
             var result = _productService.DeleteProduct(accountId, productId);
 
             //assert
-            result.Should().Equals(false);
-        }
-         //test delete product with true role
-        [Fact]
-        public void ProductService_DeleteByIdWithTrueRole_Test()
-        {
-            var mockMapper = new MapperConfiguration(cfg =>
+            if(checkRole)
             {
-                cfg.AddProfile(new MappingProfile());
-            });
-            var mapper = mockMapper.CreateMapper();
-            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
-            var accountId = 2;
-            int productId = 1;
-            //arrange
-            _productRepository.Setup(c => c.DeleteProduct(It.IsAny<int>())).Returns(true);
-            _roleRepository.Setup(r => r.CheckRole(It.IsAny<int>())).Returns(true);
-            //act
-            var result = _productService.DeleteProduct(accountId, productId);
-            //assert
-            result.Should().Equals(true);
+                result.Should().Equals(true);
+            }
+            else
+            {
+                result.Should().Equals(false);
+            }
         }
     }
 }
