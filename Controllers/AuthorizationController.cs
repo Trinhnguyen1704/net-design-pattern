@@ -23,6 +23,7 @@ namespace Namespace
         //attribute to bypass the authentication.
         /// <response code="400">If Invalid request or email is already extist.</response>
         [AllowAnonymous]
+         [ProducesResponseType(typeof(RegisterResponse), 200)]
         [HttpPost("register")]
         public ActionResult Register([FromBody] RegisterModel register)
         {
@@ -50,6 +51,7 @@ namespace Namespace
         //attribute to bypass the authentication.
         [AllowAnonymous]
         [HttpPost("login")]
+         [ProducesResponseType(typeof(Response<LoginResponse>), 200)]
         public ActionResult Login([FromBody] LoginModel loginModel)
         {
             var account = _loginService.Login(loginModel.Email, loginModel.Password);
