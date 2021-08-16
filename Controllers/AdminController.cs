@@ -38,6 +38,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpGet("category")]
+        [ProducesResponseType(typeof(Response<List<CategoryDto>>), 200)]
         public ActionResult GetCategories()
         {
             var response = new Response<List<CategoryDto>>();
@@ -70,6 +71,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpGet("category/{categoryId}")]
+        [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         public ActionResult GetCategory(int categoryId)
         {
             var response = new Response<CategoryDto>();
@@ -101,6 +103,7 @@ namespace net_design_pattern.Controllers
         /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpPost("category")]
+        [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         public ActionResult AddCategory([FromBody] CategoryDto category)
         {
             var response = new Response<CategoryDto>();
@@ -133,6 +136,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpPut("category/{categoryId}")]
+        [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         public ActionResult UpdateCategory(int categoryId, [FromBody] CategoryDto category)
         {
             var response = new Response<CategoryDto>();
@@ -166,6 +170,7 @@ namespace net_design_pattern.Controllers
         /// <response code="400">If Invalid request .</response>
         /// <param name="categoryId"></param>
         [HttpDelete("category/{categoryId}")]
+        [ProducesResponseType(typeof(Response<string>), 200)]
         public ActionResult DeleteCategory(int categoryId)
         {
             var response = new Response<string>("");
