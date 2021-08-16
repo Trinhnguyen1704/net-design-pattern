@@ -76,7 +76,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void ProductService_AddNewItemWithFalseRole_Test(bool checkRole)
+        public void ProductService_AddNewItem_Test(bool checkRole)
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
@@ -117,7 +117,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void ProductService_DeleteByIdWithFalseRole_Test(bool checkRole)
+        public void ProductService_DeleteById_Test(bool checkRole)
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
