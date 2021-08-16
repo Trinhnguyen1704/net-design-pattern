@@ -104,6 +104,7 @@ namespace net_design_pattern.Controllers
         /// <response code="400">If Invalid request .</response>
         [HttpPost("category")]
         [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
+        [ProducesResponseType(typeof(Response<CategoryDto>), 201)]
         public ActionResult AddCategory([FromBody] CategoryDto category)
         {
             var response = new Response<CategoryDto>();

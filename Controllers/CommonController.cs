@@ -95,6 +95,7 @@ namespace net_design_pattern.Controllers
         /// <response code="400">If Invalid request .</response>
         [HttpPost("product")]
         [ProducesResponseType(typeof(Response<ProductDto>), 200)]
+        [ProducesResponseType(typeof(Response<ProductDto>), 201)]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
             var response = new Response<ProductDto>();
