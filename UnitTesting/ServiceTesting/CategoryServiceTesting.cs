@@ -137,8 +137,10 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         }
         
         //test update category service
-        [Fact]
-        public void CategoryService_UpdateItemWithFalseRole_Test()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CategoryService_UpdateItemWithFalseRole_Test(bool checkRole)
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
@@ -153,14 +155,23 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             category.Id = 1;
             category.Name = "Test";
 
-            _categoryRepository.Setup(c => c.UpdateCategory(id, mapper.Map<Category>(category))).Returns((Category res) =>
+            _categoryRepository.Setup(c => c.UpdateCategory(It.IsAny<int>(), It.IsAny<Category>())).Returns((int categoryId,Category res) =>
             {
+                categoryId = id;
                 res.Id = id;
                 return res;
             });
-            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(checkRole);
             var result = _categoryService.UpdateCategory(accountId,id, category);
-            Assert.Null(result);
+            //Assert
+            if(checkRole == true)
+            {
+                Assert.NotNull(result);
+                result.Id.Should().Equals(id);
+            }else
+            {
+                Assert.Null(result);
+            }
         }
     }
 }
