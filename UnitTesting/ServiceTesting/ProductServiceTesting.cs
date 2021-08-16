@@ -143,5 +143,47 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
                 result.Should().Equals(false);
             }
         }
+        //test update product service
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ProductService_UpdateItem_Test(bool checkRole)
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            int accountId = 2;
+            var mapper = mockMapper.CreateMapper();
+            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
+
+            ProductDto product = new ProductDto();
+            int id = 1;
+            product.Id = 1;
+            product.Name = "IPhone 12";
+            product.Price = 140;
+            product.NumInStock = 20;
+            product.Description = "This is Iphone 12";
+            product.Status = "Available";
+            product.CategoryId = 1;
+
+            _productRepository.Setup(c => c.UpdateProduct(It.IsAny<int>(), It.IsAny<Product>())).Returns((int productId, Product res) =>
+            {
+                productId = id;
+                res.Id = id;
+                return res;
+            });
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(checkRole);
+            var result = _productService.UpdateProduct(accountId,id, product);
+            //Assert
+            if(checkRole == true)
+            {
+                Assert.NotNull(result);
+                result.Id.Should().Equals(id);
+            }else
+            {
+                Assert.Null(result);
+            }
+        }
     }
 }
