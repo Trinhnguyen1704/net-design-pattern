@@ -155,6 +155,25 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             //assert
             result.Should().Equals(false);
         }
-        
+         //test delete product with true role
+        [Fact]
+        public void ProductService_DeleteByIdWithTrueRole_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
+            var accountId = 2;
+            int productId = 1;
+            //arrange
+            _productRepository.Setup(c => c.DeleteProduct(It.IsAny<int>())).Returns(true);
+            _roleRepository.Setup(r => r.CheckRole(It.IsAny<int>())).Returns(true);
+            //act
+            var result = _productService.DeleteProduct(accountId, productId);
+            //assert
+            result.Should().Equals(true);
+        }
     }
 }
