@@ -102,5 +102,37 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             var result = _productService.AddProduct(accountId, product);
             Assert.Null(result);
         }
+         //test add product service with true role
+        [Fact]
+        public void ProductService_AddNewItemWithTrueRole_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            int accountId = 2;
+            var mapper = mockMapper.CreateMapper();
+            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
+
+            ProductDto product = new ProductDto();
+            int id = 1;
+            product.Name = "Test";
+            product.CategoryId = 1;
+            product.Price = 120;
+            product.Description = "This is mobile phone";
+            product.NumInStock = 12;
+            product.Status = "Available";
+
+            _productRepository.Setup(c => c.AddProduct(It.IsAny<Product>())).Returns((Product res) =>
+            {
+                res.Id = id;
+                return res;
+            });
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(true);
+            var result = _productService.AddProduct(accountId, product);
+            Assert.NotNull(result);
+            result.Id.Should().Equals(id);
+        }
+
     }
 }
