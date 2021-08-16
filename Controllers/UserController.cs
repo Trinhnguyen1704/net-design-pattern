@@ -60,6 +60,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="profile">Profile object with information need to be updated.</param>
         //Edit profile
         [HttpPut("profile")]
         [ProducesResponseType(typeof(Response<ProfileDto>), 200)]
@@ -94,6 +95,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="email">Email of profile to get.</param>
         //Get profile by email, for admin want to search
         [HttpGet("profile/{email}")]
         [ProducesResponseType(typeof(Response<ProductDto>), 200)]

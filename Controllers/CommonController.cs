@@ -61,6 +61,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="productId">Id of product to get.</param>
         [HttpGet("product/{productId}")]
         [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult GetProductById(int productId)
@@ -93,6 +94,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="product">Product object need to be added.</param>
         [HttpPost("product")]
         [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         [ProducesResponseType(typeof(Response<ProductDto>), 201)]
@@ -127,6 +129,8 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="productId">Id of product need to be updated.</param>
+        /// <param name="product">Product object with information need to be updated.</param>
         [HttpPut("product/{productId}")]
         [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
@@ -160,6 +164,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="categoryId">Id of category need to be gotten.</param>
         [HttpGet("product/category/{categoryId}")]
         [ProducesResponseType(typeof(Response<List<ProductDto>>), 200)]
         public ActionResult GetProductsByCategoryId(int categoryId)
@@ -192,6 +197,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="productId">Id of product need to be deleted.</param>
         [HttpDelete("product/{productId}")]
         [ProducesResponseType(typeof(Response<string>), 200)]
         public ActionResult DeleteProduct(int productId)
