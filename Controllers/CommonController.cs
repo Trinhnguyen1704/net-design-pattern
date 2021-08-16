@@ -29,6 +29,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpGet("product")]
+        [ProducesResponseType(typeof(Response<List<ProductDto>>), 200)]
         public ActionResult GetProducts()
         {
             //Use a common response so it is easy for fe to get and use data.
@@ -61,6 +62,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpGet("product/{productId}")]
+        [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult GetProductById(int productId)
         {
             var response = new Response<ProductDto>();
@@ -92,6 +94,7 @@ namespace net_design_pattern.Controllers
         /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpPost("product")]
+        [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult AddProduct([FromBody] ProductDto product)
         {
             var response = new Response<ProductDto>();
@@ -124,6 +127,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpPut("product/{productId}")]
+        [ProducesResponseType(typeof(Response<ProductDto>), 200)]
         public ActionResult UpdateProduct(int productId, [FromBody] ProductDto product)
         {
             var response = new Response<ProductDto>();
@@ -156,6 +160,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpGet("product/category/{categoryId}")]
+        [ProducesResponseType(typeof(Response<List<ProductDto>>), 200)]
         public ActionResult GetProductsByCategoryId(int categoryId)
         {
             var response = new Response<List<ProductDto>>();
@@ -187,6 +192,7 @@ namespace net_design_pattern.Controllers
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpDelete("product/{productId}")]
+        [ProducesResponseType(typeof(Response<string>), 200)]
         public ActionResult DeleteProduct(int productId)
         {
             var response = new Response<string>("");
