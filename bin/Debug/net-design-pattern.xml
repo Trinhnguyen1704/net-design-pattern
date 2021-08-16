@@ -6,86 +6,139 @@
     <members>
         <member name="M:net_design_pattern.Controllers.AdminController.GetCategories">
             <summary>
-            Get add categories.
+            Get all categories.
             </summary>
             <response code="401">If user is not authenticated.</response>
-            <response code="400">If the item is null</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
         </member>
         <member name="M:net_design_pattern.Controllers.AdminController.GetCategory(System.Int32)">
             <summary>
             Get category by category id.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="categoryId">Id of cateogy to get</param>
         </member>
         <member name="M:net_design_pattern.Controllers.AdminController.AddCategory(net_design_pattern.Domain.Models.DTOs.CategoryDto)">
             <summary>
             Add new CategoryItem.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="201">Return the newly created item.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="category">Category object that need to be added.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.AdminController.UpdateCategory(System.Int32,net_design_pattern.Domain.Models.DTOs.CategoryDto)">
             <summary>
             Update a specific CategoryItem.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="categoryId">Id of category to update</param>
+            <param name="category">Category object with information need to be updated</param>
         </member>
         <member name="M:net_design_pattern.Controllers.AdminController.DeleteCategory(System.Int32)">
             <summary>
             Deletes a specific CategoryItem.
             </summary>
-            <param name="categoryId"></param>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="categoryId">Id of category to delete</param>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.GetProducts">
             <summary>
             Get all products.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.GetProductById(System.Int32)">
             <summary>
             Get product by product Id.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="productId">Id of product to get.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.AddProduct(net_design_pattern.Domain.Models.DTOs.ProductDto)">
             <summary>
             Add new product item.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="201">Return the newly created item.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="product">Product object need to be added.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.UpdateProduct(System.Int32,net_design_pattern.Domain.Models.DTOs.ProductDto)">
             <summary>
             Update a specific product.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="productId">Id of product need to be updated.</param>
+            <param name="product">Product object with information need to be updated.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.GetProductsByCategoryId(System.Int32)">
             <summary>
             Get products by category id.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="categoryId">Id of category need to be gotten.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.CommonController.DeleteProduct(System.Int32)">
             <summary>
             Delete a specific product item.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="productId">Id of product need to be deleted.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.UserController.GetUserProfile">
             <summary>
             Get user profile.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
         </member>
         <member name="M:net_design_pattern.Controllers.UserController.UpdateProfile(net_design_pattern.Domain.Models.DTOs.ProfileDto)">
             <summary>
             Update profile.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="profile">Profile object with information need to be updated.</param>
         </member>
         <member name="M:net_design_pattern.Controllers.UserController.GetUserProfileByEmail(System.String)">
             <summary>
             Get profile by email.
             </summary>
+            <response code="401">If user is not authenticated.</response>
+            <response code="404">If result is not found.</response>
+            <response code="400">If Invalid request .</response>
+            <param name="email">Email of profile to get.</param>
         </member>
         <member name="M:Namespace.AuthorizationController.Register(net_design_pattern.Domain.Models.Authorization.RegisterModel)">
-            <summary>
-            Register new account.
-            </summary>
+            <response code="400">If Invalid request or email is already extist.</response>
+            <param name="register">Register information need.</param>
         </member>
         <member name="M:Namespace.AuthorizationController.Login(net_design_pattern.Domain.Models.Authorization.LoginModel)">
             <summary>
             Login to application.
             </summary>
+            <response code="400">If Invalid request .</response>
+            <param name="loginModel">Login information</param>
         </member>
     </members>
 </doc>
