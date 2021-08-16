@@ -98,7 +98,7 @@ namespace net_design_pattern.Controllers
         /// Add new CategoryItem.
         /// </summary>
         /// <response code="401">If user is not authenticated.</response>
-        /// <response code="404">If result is not found.</response>
+        /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
         [HttpPost("category")]
         public ActionResult AddCategory([FromBody] CategoryDto category)
