@@ -136,7 +136,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
 
         //test delete product with false role
         [Fact]
-        public void CategoryService_DeleteByIdWithFalseRole_Test()
+        public void ProductService_DeleteByIdWithFalseRole_Test()
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
