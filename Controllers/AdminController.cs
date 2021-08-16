@@ -70,6 +70,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="categoryId">Id of cateogy to get</param>
         [HttpGet("category/{categoryId}")]
         [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         public ActionResult GetCategory(int categoryId)
@@ -102,6 +103,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="category">Category object that need to be added.</param>
         [HttpPost("category")]
         [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         [ProducesResponseType(typeof(Response<CategoryDto>), 201)]
@@ -136,6 +138,8 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
+        /// <param name="categoryId">Id of category to update</param>
+        /// <param name="category">Category object with information need to be updated</param>
         [HttpPut("category/{categoryId}")]
         [ProducesResponseType(typeof(Response<CategoryDto>), 200)]
         public ActionResult UpdateCategory(int categoryId, [FromBody] CategoryDto category)
@@ -169,7 +173,7 @@ namespace net_design_pattern.Controllers
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
-        /// <param name="categoryId"></param>
+        /// <param name="categoryId">Id of category to delete</param>
         [HttpDelete("category/{categoryId}")]
         [ProducesResponseType(typeof(Response<string>), 200)]
         public ActionResult DeleteCategory(int categoryId)
