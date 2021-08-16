@@ -72,9 +72,11 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             result.Id.Should().Equals(expectedItem.Id);
         }
 
-        //test add product service with false role
-        [Fact]
-        public void ProductService_AddNewItemWithFalseRole_Test()
+        //test add product service
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ProductService_AddNewItemWithFalseRole_Test(bool checkRole)
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
@@ -98,42 +100,19 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
                 res.Id = id;
                 return res;
             });
-            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(false);
+            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(checkRole);
             var result = _productService.AddProduct(accountId, product);
-            Assert.Null(result);
-        }
-         //test add product service with true role
-        [Fact]
-        public void ProductService_AddNewItemWithTrueRole_Test()
-        {
-            var mockMapper = new MapperConfiguration(cfg =>
+            if(checkRole)
             {
-                cfg.AddProfile(new MappingProfile());
-            });
-            int accountId = 2;
-            var mapper = mockMapper.CreateMapper();
-            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
-
-            ProductDto product = new ProductDto();
-            int id = 1;
-            product.Name = "Test";
-            product.CategoryId = 1;
-            product.Price = 120;
-            product.Description = "This is mobile phone";
-            product.NumInStock = 12;
-            product.Status = "Available";
-
-            _productRepository.Setup(c => c.AddProduct(It.IsAny<Product>())).Returns((Product res) =>
+                Assert.NotNull(result);
+                result.Id.Should().Equals(id);
+            }
+            else
             {
-                res.Id = id;
-                return res;
-            });
-            _roleRepository.Setup(r => r.CheckRole(accountId)).Returns(true);
-            var result = _productService.AddProduct(accountId, product);
-            Assert.NotNull(result);
-            result.Id.Should().Equals(id);
+                Assert.Null(result);
+            }
         }
-
+        
         //test delete product with false role
         [Fact]
         public void ProductService_DeleteByIdWithFalseRole_Test()
