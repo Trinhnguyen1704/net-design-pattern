@@ -52,7 +52,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
 
         // Test get product by Id
         [Fact]
-        public void CategoryService_GetCategoryById_Test()
+        public void ProductService_GetProductById_Test()
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
@@ -71,9 +71,10 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             Assert.NotNull(result);
             result.Id.Should().Equals(expectedItem.Id);
         }
+
         //test add product service with false role
         [Fact]
-        public void CategoryService_AddNewItem_Test()
+        public void ProductService_AddNewItemWithFalseRole_Test()
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
