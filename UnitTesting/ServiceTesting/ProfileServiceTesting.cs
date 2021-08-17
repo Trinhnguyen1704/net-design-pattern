@@ -21,7 +21,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
         private Mock<IProfileRepository> _profileRepository = new Mock<IProfileRepository>();
         private Mock<IRoleRepository> _roleRepository = new Mock<IRoleRepository>();
         private IProfileService _profileService;
-        private List<Domain.Models.Profile> _listProduct = new List<Domain.Models.Profile>()
+        private List<Domain.Models.Profile> _listProfile = new List<Domain.Models.Profile>()
         {
             new Domain.Models.Profile() {Id =1, FirstName= "Nguyen", LastName = "Trinh", AccountId = 1, PhoneNumber = "0339934123", Gender = 0, DateOfBirth = DateTime.Parse("1999-04-17"), Address="Da Nang"},
             new Domain.Models.Profile() {Id =2, FirstName= "Tran", LastName = "An", AccountId = 2, PhoneNumber = "0339934123", Gender = 1, DateOfBirth = DateTime.Parse("1999-12-21"), Address="Quang Ngai"},
@@ -61,6 +61,26 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             Assert.NotNull(result);
             result.AccountId.Should().Equals(id);
         }
-        
+
+        [Fact]
+        public void ProductService_GetProfileByAccountId_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+            _profileService = new ProfileService(_profileRepository.Object,mapper,_roleRepository.Object);
+            var accountId = 2;
+            var expectedItem = _listProfile[1];
+            //arrange
+            _profileRepository.Setup(c => c.GetProfile(It.IsAny<int>())).Returns(expectedItem);
+            //act
+            var result = _profileService.GetProfile(accountId) as ProfileDto;
+
+            //assert
+            Assert.NotNull(result);
+            result.AccountId.Should().Equals(accountId);
+        }
     }
 }
