@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using net_design_pattern.Domain.Models;
@@ -133,14 +130,14 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 Category category = new Category
                 {
                     Id =1,
-                    Name = "IPad"
+                    Name = "SamSung"
                 };
                 //Act
                 var result = categoryRepository.UpdateCategory(1,category);
                 //Assert
                 Assert.NotNull(result);
                 result.Id.Should().Equals(1);
-                result.Name.Should().Equals("IPad");
+                result.Name.Should().Equals("SamSung");
             }
         }
         //Delete category test
