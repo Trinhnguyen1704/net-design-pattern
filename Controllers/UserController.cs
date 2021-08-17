@@ -57,6 +57,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update profile.
         /// </summary>
+        ///<remarks>Note that Gender field only accepts "Male" and "Female"</remarks>
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
