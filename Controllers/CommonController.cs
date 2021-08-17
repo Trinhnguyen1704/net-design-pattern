@@ -91,6 +91,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Add new product item.
         /// </summary>
+        ///<remarks>Note that status field only accepts "Available" and "Unavailable"</remarks>
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="201">Return the newly created item.</response>
         /// <response code="400">If Invalid request .</response>
@@ -126,6 +127,7 @@ namespace net_design_pattern.Controllers
         /// <summary>
         /// Update a specific product.
         /// </summary>
+        ///<remarks>Note that status field only accepts "Available" and "Unavailable"</remarks>
         /// <response code="401">If user is not authenticated.</response>
         /// <response code="404">If result is not found.</response>
         /// <response code="400">If Invalid request .</response>
