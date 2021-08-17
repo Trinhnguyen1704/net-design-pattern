@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using FluentAssertions;
 using Moq;
-using net_design_pattern.Domain.Models;
 using net_design_pattern.Domain.Models.DTOs;
 using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Domain.Repositories.User;

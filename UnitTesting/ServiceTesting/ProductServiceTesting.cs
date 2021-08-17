@@ -1,13 +1,9 @@
-using System;
 using Xunit;
-using net_design_pattern.Domain.Services.Admin;
 using net_design_pattern.Domain.Models.DTOs;
 using System.Collections.Generic;
-using net_design_pattern.Controllers;
 using FluentAssertions;
 using Moq;
 using net_design_pattern.Domain.Repositories.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using net_design_pattern.Domain.Models;
 using net_design_pattern.Persistence.Helper;
