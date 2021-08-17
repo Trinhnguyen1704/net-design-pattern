@@ -14,6 +14,7 @@ using net_design_pattern.Persistence.Helper;
 using net_design_pattern.Domain.Repositories.Common;
 using net_design_pattern.Domain.Services.Common;
 using net_design_pattern.Services.Common;
+using System.Linq;
 
 namespace net_design_pattern.UnitTesting.ServiceTesting
 {
@@ -26,7 +27,7 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             {
                 new Product() {Id =1, Name = "Iphone 12", Price = 120, CategoryId = 1, NumInStock = 10, IsAvailable = 1, Description = "This is available."},
                 new Product() {Id =2, Name = "Oppo A37", Price = 140, CategoryId = 1, NumInStock = 20, IsAvailable = 1, Description = "This is available."},
-                new Product() {Id =3, Name = "Samsung J7", Price = 120, CategoryId = 1, NumInStock = 10, IsAvailable = 1, Description = "This is available."},
+                new Product() {Id =3, Name = "Samsung J7", Price = 120, CategoryId = 2, NumInStock = 10, IsAvailable = 1, Description = "This is available."},
             };
 
         //test get all products service
@@ -185,5 +186,28 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
                 Assert.Null(result);
             }
         }
+         // Test get product by category id
+        [Fact]
+        public void ProductService_GetProductByCategoryId_Test()
+        {
+            var mockMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            var mapper = mockMapper.CreateMapper();
+            _productService = new ProductService(_productRepository.Object,_roleRepository.Object, mapper);
+            var accountId = 2;
+            var categoryId = 1;
+            var expectedItem = _listProduct[1];
+            //arrange
+            _productRepository.Setup(c => c.GetProductsByCategoryId(It.IsAny<int>())).Returns(_listProduct.Where(x=> x.CategoryId.Equals(categoryId)).ToList());
+            //act
+            var result = _productService.GetProductsByCategoryId(accountId,categoryId);
+
+            //assert
+            Assert.NotNull(result);
+            result.Should().HaveCount(2);
+        }
+
     }
 }
