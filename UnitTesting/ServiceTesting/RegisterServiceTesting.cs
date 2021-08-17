@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
+using net_design_pattern.Domain.Models.Authorization;
 using net_design_pattern.Domain.Repositories.Authorization;
 using net_design_pattern.Domain.Services.Authorization;
 using net_design_pattern.Services.Authorization;
@@ -37,6 +38,24 @@ namespace net_design_pattern.UnitTesting.ServiceTesting
             {
                 result.Should().Equals(false);
             }
+        }
+        [Theory]
+        [InlineData(3)]
+        [InlineData(-1)]
+        public void RegisterService_Register_Test(int accountId)
+        {
+            _registerService = new RegisterService(_registerRepository.Object);  
+            //Arrange
+            RegisterModel register = new RegisterModel();
+            register.Email = "jessie@enclave.vn";
+            register.FirstName = "Nguyen";
+            register.LastName = "Trinh";
+            register.Password = "123qwe!@#";
+            _registerRepository.Setup(c => c.Register(It.IsAny<RegisterModel>())).Returns(accountId);
+            //Act
+            var result = _registerService.Register(register);
+            //Assert
+            result.Should().Equals(accountId);
         }
     }
 }
