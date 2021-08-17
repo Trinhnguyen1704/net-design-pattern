@@ -76,5 +76,29 @@ namespace net_design_pattern.UnitTesting.RepositoryTesting
                 result.Should().Equals(2);
             }
         }
+        [Theory]
+        [InlineData("trinh@gmail.com")]
+        [InlineData("trinh123@gmail.com")]
+        public void RegisterRepository_CheckRole_Test(string email)
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(databaseName: "phonestore")
+            .Options;
+             using (var context = new AppDbContext(options))
+            {
+                registerRepository = new RegisterRepository(_passwordService.Object, context);
+                //Act
+                var result = registerRepository.CheckAccountExistence(email);
+                //Assert
+                if(email =="trinh@gmail.com")
+                {
+                    result.Should().Equals(true);
+                }
+                if(email == "trinh123@gmail.com")
+                {
+                    result.Should().Equals(false);
+                }
+            }
+        }
     }
 }
